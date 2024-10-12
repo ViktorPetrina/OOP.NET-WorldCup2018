@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Repository
+namespace DataLayer.Utilities
 {
-    public static class FileManager
+    public static class PreferencesUtils
     {
         private const string APP_NAME = "WinFormApp"; // promjeniti poslje u Application.ProductName
         private const string FILE_NAME = "preferences.json";
@@ -26,7 +26,17 @@ namespace DataLayer.Repository
 
         public static UserPreferences LoadPreferences()
         {
+            if (!File.Exists(GetFilePath()))
+            {
+                throw new Exception("Preferences do not exist.");
+            }
+
             return JsonConvert.DeserializeObject<UserPreferences>(File.ReadAllText(GetFilePath()));
+        }
+
+        public static bool PreferencesExist()
+        {
+            return File.Exists(GetFilePath());
         }
 
         private static string GetFilePath()
@@ -37,5 +47,7 @@ namespace DataLayer.Repository
 
             return Path.Combine(appFolder, FILE_NAME);
         }
+
+
     }
 }

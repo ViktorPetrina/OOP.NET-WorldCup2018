@@ -1,10 +1,13 @@
-using DataLayer.Repository;
 using DataLayer.Model;
+using DataLayer.Utilities;
+using System.Text;
 
 namespace ViktorPetrina
 {
     public partial class SettingsForm : Form
     {
+        private const string FORM_NOT_VALID_MESSAGE = "Each option has to be checked.";
+
         public SettingsForm()
         {
             InitializeComponent();
@@ -13,6 +16,12 @@ namespace ViktorPetrina
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
+            if (!FormValid())
+            {
+                MessageBox.Show(FORM_NOT_VALID_MESSAGE, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             new MainForm(GetPreferencesFromUser()).Show();
             Hide();
         }
@@ -21,7 +30,12 @@ namespace ViktorPetrina
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            var preferences = FileManager.LoadPreferences();
+            if (!PreferencesUtils.PreferencesExist())
+            {
+                return;
+            }
+
+            var preferences = PreferencesUtils.LoadPreferences();
 
             rbtnMale.Checked = preferences.TeamGender.Equals(UserPreferences.Gender.Male);
             rbtnFemale.Checked = !rbtnMale.Checked;
@@ -50,6 +64,12 @@ namespace ViktorPetrina
 
                 DataSource = rbtnApi.Checked ?
                     UserPreferences.SourceType.API : UserPreferences.SourceType.Json
-            };   
+            };
+
+        private bool FormValid()
+            => rbtnMale.Checked || rbtnFemale.Checked &&
+               rbtnCroatian.Checked || rbtnEnglish.Checked &&
+               rbtnApi.Checked || rbtnJson.Checked;
+        
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Model;
 using DataLayer.Repository;
+using DataLayer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// TODO: sredi da su rijeci lokaliziranje, sredi da igraci imaju slike, pogledaj zasto su nekad obrnuti timovi i popravi
+
 namespace ViktorPetrina
 {
     public partial class MainForm : Form
@@ -21,6 +24,8 @@ namespace ViktorPetrina
 
         private IFootballRepository menRepo;
         private UserPreferences settingsPreferences;
+
+        private bool preferencesSaved = true;
 
         public MainForm(UserPreferences preferences_)
         {
@@ -35,7 +40,12 @@ namespace ViktorPetrina
             List<Team> teams = menRepo.GetAllTeams();
             cbTeams.Items.AddRange(teams.ToArray());
 
-            var preferences = FileManager.LoadPreferences();
+            if (!PreferencesUtils.PreferencesExist())
+            {
+                return;
+            }
+
+            var preferences = PreferencesUtils.LoadPreferences();
 
             // izvadi to u konstantu ili u nesto vezano uz resurse i jezike...
             lblFavTeam.Text = $"Omiljena reprezentacija: {preferences.FavouriteTeam?.Country}";
@@ -49,6 +59,8 @@ namespace ViktorPetrina
 
             lbPlayers.Items.Clear();
             lbPlayers.Items.AddRange(playerList.ToArray());
+
+            preferencesSaved = false;
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -59,21 +71,22 @@ namespace ViktorPetrina
                 return;
             }
 
-            FileManager.SavePrefrences(GetPreferences());
+            preferencesSaved = true;
+            PreferencesUtils.SavePrefrences(GetCombinedPreferences());
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 == DialogResult.Yes && FormValid())
             {
-                FileManager.SavePrefrences(GetPreferences());
+                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
             }
 
             Application.Exit();
         }
 
-        private UserPreferences GetPreferences()
+        private UserPreferences GetCombinedPreferences()
             => new UserPreferences
             {
                 DataSource = settingsPreferences.DataSource,
@@ -85,6 +98,15 @@ namespace ViktorPetrina
 
         private bool FormValid() => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
 
+        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            lblPlayerName.Text = "Ime: " + (lbPlayers.SelectedItem as Player).Name;
+            lblPlayerNumber.Text = "Broj: " + (lbPlayers.SelectedItem as Player).ShirtNumber.ToString();
+            lblPlayerIsCaptain.Text = (lbPlayers.SelectedItem as Player).Captain ? "Kapetan: Da" : "Kapetan: Ne";
+            //lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
+            //    .FavouritePlayers.Contains(lbPlayers.SelectedItem as Player) ? "Da" : "Ne";
 
+            preferencesSaved = false;
+        }
     }
 }
