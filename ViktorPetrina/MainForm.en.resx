@@ -123,7 +123,28 @@
   <data name="btnConfirm.Text" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Favourite players:</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Team players:</value>
+  </data>
+  <data name="lblChooseTeam.Text" xml:space="preserve">
+    <value>Choose team:</value>
+  </data>
+  <data name="lblFavTeamLbl.Text" xml:space="preserve">
+    <value>Favourite team:</value>
+  </data>
+  <data name="lblPlayerIsCaptain.Text" xml:space="preserve">
+    <value>Captain:</value>
+  </data>
+  <data name="lblPlayerIsFavourite.Text" xml:space="preserve">
+    <value>Favourite:</value>
+  </data>
   <data name="lblPlayerName.Text" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="lblPlayerNumber.Text" xml:space="preserve">
+    <value>Shirt number:</value>
   </data>
 </root>

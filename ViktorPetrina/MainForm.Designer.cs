@@ -35,7 +35,7 @@
             pictureBox1 = new PictureBox();
             progressBar1 = new ProgressBar();
             btnConfirm = new Button();
-            lblFavTeam = new Label();
+            lblFavTeamLbl = new Label();
             lbFavPlayers = new ListBox();
             label1 = new Label();
             label2 = new Label();
@@ -44,6 +44,7 @@
             lblPlayerIsCaptain = new Label();
             lblPlayerIsFavourite = new Label();
             btnChangeCulture = new Button();
+            lblFavTeam = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -85,10 +86,10 @@
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
             // 
-            // lblFavTeam
+            // lblFavTeamLbl
             // 
-            resources.ApplyResources(lblFavTeam, "lblFavTeam");
-            lblFavTeam.Name = "lblFavTeam";
+            resources.ApplyResources(lblFavTeamLbl, "lblFavTeamLbl");
+            lblFavTeamLbl.Name = "lblFavTeamLbl";
             // 
             // lbFavPlayers
             // 
@@ -133,10 +134,16 @@
             btnChangeCulture.UseVisualStyleBackColor = true;
             btnChangeCulture.Click += btnChangeCulture_Click;
             // 
+            // lblFavTeam
+            // 
+            resources.ApplyResources(lblFavTeam, "lblFavTeam");
+            lblFavTeam.Name = "lblFavTeam";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblFavTeam);
             Controls.Add(btnChangeCulture);
             Controls.Add(lblPlayerIsFavourite);
             Controls.Add(lblPlayerIsCaptain);
@@ -145,7 +152,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lbFavPlayers);
-            Controls.Add(lblFavTeam);
+            Controls.Add(lblFavTeamLbl);
             Controls.Add(btnConfirm);
             Controls.Add(progressBar1);
             Controls.Add(pictureBox1);
@@ -154,6 +161,7 @@
             Controls.Add(lblChooseTeam);
             Name = "MainForm";
             FormClosing += MainForm_FormClosing;
+            FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -168,7 +176,7 @@
         private PictureBox pictureBox1;
         private ProgressBar progressBar1;
         private Button btnConfirm;
-        private Label lblFavTeam;
+        private Label lblFavTeamLbl;
         private ListBox lbFavPlayers;
         private Label label1;
         private Label label2;
@@ -177,5 +185,6 @@
         private Label lblPlayerIsCaptain;
         private Label lblPlayerIsFavourite;
         private Button btnChangeCulture;
+        private Label lblFavTeam;
     }
 }

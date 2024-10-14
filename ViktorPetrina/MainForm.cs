@@ -50,7 +50,8 @@ namespace ViktorPetrina
             var preferences = PreferencesUtils.LoadPreferences();
 
             // izvadi to u konstantu ili u nesto vezano uz resurse i jezike...
-            lblFavTeam.Text = $"Omiljena reprezentacija: {preferences.FavouriteTeam?.Country}";
+
+            lblFavTeam.Text = preferences.FavouriteTeam?.Country;
             preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
         }
 
@@ -79,13 +80,14 @@ namespace ViktorPetrina
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                == DialogResult.Yes && FormValid())
-            {
-                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
-            }
+            //if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit",
+            //    MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            //    == DialogResult.Yes && FormValid())
+            //{
+            //    PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+            //}
 
-            Application.Exit();
+            //Application.Exit();
         }
 
         private UserPreferences GetCombinedPreferences()
@@ -121,7 +123,7 @@ namespace ViktorPetrina
 
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
-            
+
             Controls.Clear();
             InitializeComponent();
             MainForm_Load(this, new EventArgs());
@@ -137,6 +139,22 @@ namespace ViktorPetrina
             {
                 SetCulture("hr");
             }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                == DialogResult.Yes && FormValid())
+            {
+                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+            }
+            else
+            {
+                Close();
+            }
+
+            Application.Exit();
         }
     }
 }
