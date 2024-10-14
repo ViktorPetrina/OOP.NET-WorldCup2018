@@ -120,4 +120,10 @@
   <data name="btnChangeCulture.Text" xml:space="preserve">
     <value>Promjeni kulturu</value>
   </data>
+  <data name="btnConfirm.Text" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
+  <data name="lblPlayerName.Text" xml:space="preserve">
+    <value>Ime:</value>
+  </data>
 </root>
