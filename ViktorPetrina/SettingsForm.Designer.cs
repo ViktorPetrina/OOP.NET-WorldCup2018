@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             btnConfirm = new Button();
             gbGender = new GroupBox();
             rbtnFemale = new RadioButton();
@@ -49,11 +50,8 @@
             // 
             // btnConfirm
             // 
-            btnConfirm.Location = new Point(12, 411);
+            resources.ApplyResources(btnConfirm, "btnConfirm");
             btnConfirm.Name = "btnConfirm";
-            btnConfirm.Size = new Size(158, 50);
-            btnConfirm.TabIndex = 9;
-            btnConfirm.Text = "Potvrdi";
             btnConfirm.UseVisualStyleBackColor = true;
             btnConfirm.Click += btnConfirm_Click;
             // 
@@ -62,149 +60,102 @@
             gbGender.Controls.Add(rbtnFemale);
             gbGender.Controls.Add(rbtnMale);
             gbGender.Controls.Add(label1);
-            gbGender.Location = new Point(12, 12);
+            resources.ApplyResources(gbGender, "gbGender");
             gbGender.Name = "gbGender";
-            gbGender.Size = new Size(366, 117);
-            gbGender.TabIndex = 11;
             gbGender.TabStop = false;
             // 
             // rbtnFemale
             // 
-            rbtnFemale.AutoSize = true;
-            rbtnFemale.Location = new Point(227, 67);
+            resources.ApplyResources(rbtnFemale, "rbtnFemale");
             rbtnFemale.Name = "rbtnFemale";
-            rbtnFemale.Size = new Size(94, 29);
-            rbtnFemale.TabIndex = 5;
             rbtnFemale.TabStop = true;
-            rbtnFemale.Text = "Žensko";
             rbtnFemale.UseVisualStyleBackColor = true;
             // 
             // rbtnMale
             // 
-            rbtnMale.AutoSize = true;
-            rbtnMale.Location = new Point(32, 67);
+            resources.ApplyResources(rbtnMale, "rbtnMale");
             rbtnMale.Name = "rbtnMale";
-            rbtnMale.Size = new Size(91, 29);
-            rbtnMale.TabIndex = 4;
             rbtnMale.TabStop = true;
-            rbtnMale.Text = "Muško";
             rbtnMale.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(32, 29);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(94, 25);
-            label1.TabIndex = 3;
-            label1.Text = "Prvenstvo:";
             // 
             // gbLanguage
             // 
             gbLanguage.Controls.Add(rbtnEnglish);
             gbLanguage.Controls.Add(rbtnCroatian);
             gbLanguage.Controls.Add(label2);
-            gbLanguage.Location = new Point(12, 142);
+            resources.ApplyResources(gbLanguage, "gbLanguage");
             gbLanguage.Name = "gbLanguage";
-            gbLanguage.Size = new Size(366, 117);
-            gbLanguage.TabIndex = 12;
             gbLanguage.TabStop = false;
             // 
             // rbtnEnglish
             // 
-            rbtnEnglish.AutoSize = true;
-            rbtnEnglish.Location = new Point(227, 67);
+            resources.ApplyResources(rbtnEnglish, "rbtnEnglish");
             rbtnEnglish.Name = "rbtnEnglish";
-            rbtnEnglish.Size = new Size(101, 29);
-            rbtnEnglish.TabIndex = 8;
             rbtnEnglish.TabStop = true;
-            rbtnEnglish.Text = "Engleski";
             rbtnEnglish.UseVisualStyleBackColor = true;
             // 
             // rbtnCroatian
             // 
-            rbtnCroatian.AutoSize = true;
-            rbtnCroatian.Location = new Point(32, 67);
+            resources.ApplyResources(rbtnCroatian, "rbtnCroatian");
             rbtnCroatian.Name = "rbtnCroatian";
-            rbtnCroatian.Size = new Size(101, 29);
-            rbtnCroatian.TabIndex = 7;
             rbtnCroatian.TabStop = true;
-            rbtnCroatian.Text = "Hrvatski";
             rbtnCroatian.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(32, 26);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(52, 25);
-            label2.TabIndex = 6;
-            label2.Text = "Jezik:";
             // 
             // gbSource
             // 
             gbSource.Controls.Add(rbtnJson);
             gbSource.Controls.Add(rbtnApi);
             gbSource.Controls.Add(label3);
-            gbSource.Location = new Point(12, 277);
+            resources.ApplyResources(gbSource, "gbSource");
             gbSource.Name = "gbSource";
-            gbSource.Size = new Size(366, 117);
-            gbSource.TabIndex = 13;
             gbSource.TabStop = false;
             // 
             // rbtnJson
             // 
-            rbtnJson.AutoSize = true;
-            rbtnJson.Location = new Point(227, 65);
+            resources.ApplyResources(rbtnJson, "rbtnJson");
             rbtnJson.Name = "rbtnJson";
-            rbtnJson.Size = new Size(80, 29);
-            rbtnJson.TabIndex = 11;
             rbtnJson.TabStop = true;
-            rbtnJson.Text = "JSON";
             rbtnJson.UseVisualStyleBackColor = true;
             // 
             // rbtnApi
             // 
-            rbtnApi.AutoSize = true;
-            rbtnApi.Location = new Point(32, 65);
+            resources.ApplyResources(rbtnApi, "rbtnApi");
             rbtnApi.Name = "rbtnApi";
-            rbtnApi.Size = new Size(64, 29);
-            rbtnApi.TabIndex = 10;
             rbtnApi.TabStop = true;
-            rbtnApi.Text = "API";
             rbtnApi.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(32, 24);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(55, 25);
-            label3.TabIndex = 9;
-            label3.Text = "Izvor:";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(220, 411);
+            resources.ApplyResources(btnCancel, "btnCancel");
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(158, 50);
-            btnCancel.TabIndex = 14;
-            btnCancel.Text = "Odustani";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
             // SettingsForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(390, 479);
             Controls.Add(btnCancel);
             Controls.Add(gbSource);
             Controls.Add(gbLanguage);
             Controls.Add(gbGender);
             Controls.Add(btnConfirm);
             Name = "SettingsForm";
-            Text = "Settings";
             FormClosing += SettingsForm_FormClosing;
             Load += SettingsForm_Load;
             gbGender.ResumeLayout(false);

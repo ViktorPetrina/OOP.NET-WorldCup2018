@@ -13,18 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resource\MainForm.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MainForm.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resource\MainForm.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MainForm.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="Resource\" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace ViktorPetrina
             StartPosition = FormStartPosition.CenterScreen;
             menRepo = new MenTeamsRepository();
             settingsPreferences = preferences_;
+            SetCulture("en");
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -103,10 +105,38 @@ namespace ViktorPetrina
             lblPlayerName.Text = "Ime: " + (lbPlayers.SelectedItem as Player).Name;
             lblPlayerNumber.Text = "Broj: " + (lbPlayers.SelectedItem as Player).ShirtNumber.ToString();
             lblPlayerIsCaptain.Text = (lbPlayers.SelectedItem as Player).Captain ? "Kapetan: Da" : "Kapetan: Ne";
-            //lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
-            //    .FavouritePlayers.Contains(lbPlayers.SelectedItem as Player) ? "Da" : "Ne";
+
+            if (PreferencesUtils.PreferencesExist())
+            {
+                lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
+                    .FavouritePlayers.Contains(lbPlayers.SelectedItem as Player) ? "Da" : "Ne";
+            }
 
             preferencesSaved = false;
+        }
+
+        private void SetCulture(string lang)
+        {
+            var culture = new CultureInfo(lang);
+
+            Thread.CurrentThread.CurrentUICulture = culture;
+            Thread.CurrentThread.CurrentCulture = culture;
+            
+            Controls.Clear();
+            InitializeComponent();
+            MainForm_Load(this, new EventArgs());
+        }
+
+        private void btnChangeCulture_Click(object sender, EventArgs e)
+        {
+            if (Thread.CurrentThread.CurrentCulture.Name == "hr")
+            {
+                SetCulture("en");
+            }
+            else
+            {
+                SetCulture("hr");
+            }
         }
     }
 }
