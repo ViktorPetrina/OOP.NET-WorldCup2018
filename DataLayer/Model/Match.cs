@@ -54,10 +54,10 @@ namespace DataLayer.Model
         public string WinnerCode { get; set; }
 
         [JsonProperty("home_team")]
-        public Team HomeTeam { get; set; }
+        public TeamMini HomeTeam { get; set; }
 
         [JsonProperty("away_team")]
-        public Team AwayTeam { get; set; }
+        public TeamMini AwayTeam { get; set; }
 
         [JsonProperty("home_team_events")]
         public TeamEvent[] HomeTeamEvents { get; set; }
@@ -238,7 +238,7 @@ namespace DataLayer.Model
         };
     }
 
-    internal class ParseStringConverter : JsonConverter
+    public class ParseStringConverter : JsonConverter
     {
         public override bool CanConvert(Type t) => t == typeof(long) || t == typeof(long?);
 

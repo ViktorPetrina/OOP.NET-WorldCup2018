@@ -1,7 +1,7 @@
 ﻿using DataLayer;
 using DataLayer.Model;
 using DataLayer.Repository;
-using DataLayer.Utilities;
+using WinFormApp.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,13 +14,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormApp.Model;
 
-// TODO: sredi da su rijeci lokaliziranje(rijeseno),
-// popravi buggy izlaz iz forme,
-// sredi da igraci imaju slike,
-// pogledaj zasto su nekad obrnuti timovi i popravi
-// REFCTORING: napravi novi class library za utilitije jer to ne spada u data layer
-
+// TODO:
+// sredi da igraci imaju slike
 
 namespace ViktorPetrina
 {
@@ -49,14 +46,14 @@ namespace ViktorPetrina
             switch (settingsPreferences.PreferedLanguage)
             {
                 case UserPreferences.Language.English:
-                    SetCulture("en");
+                    FormUtils.SetCulture("en");
                     break;
                 case UserPreferences.Language.Croatian:
-                    SetCulture("hr");
+                    FormUtils.SetCulture("hr");
                     break;
                 default:
                     throw new Exception("Not supported language.");
-            } 
+            }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -77,11 +74,7 @@ namespace ViktorPetrina
 
         private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
         {
-            string fifaCode = (cbTeams.SelectedItem as Team).FifaCode;
-            IList<Player> playerList = menRepo.GetPlayersByFifaCode(fifaCode);
-
-            lbPlayers.Items.Clear();
-            lbPlayers.Items.AddRange(playerList.ToArray());
+            ShowTeam(cbTeams.SelectedItem as Team);
 
             preferencesSaved = false;
         }
@@ -106,9 +99,9 @@ namespace ViktorPetrina
             }
 
             DialogResult result = MessageBox.Show(
-                EXIT_CONFIRMATION_MESSAGE, 
-                "Exit", 
-                MessageBoxButtons.YesNo, 
+                EXIT_CONFIRMATION_MESSAGE,
+                "Exit",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (FormValid() && result == DialogResult.Yes)
@@ -119,6 +112,42 @@ namespace ViktorPetrina
             Environment.Exit(0);
         }
 
+        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ShowPlayer(lbPlayers.SelectedItem as Player);
+
+            preferencesSaved = false;
+        }
+
+        private void lbFavPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ShowPlayer(lbFavPlayers.SelectedItem as Player);
+        }
+
+        private void ShowPlayer(Player player)
+        {
+            lblPlayerName.Text = player.Name;
+            lblPlayerNumber.Text = player.ShirtNumber.ToString();
+            lblPlayerIsCaptain.Text = player.Captain ? "Da" : "Ne";
+
+            if (PreferencesUtils.PreferencesExist())
+            {
+                lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
+                    .FavouritePlayers.Contains(player) ? "Da" : "Ne";
+            }
+        }
+
+        private void ShowTeam(Team team)
+        {
+            string fifaCode = team.FifaCode;
+            IList<Player> playerList = menRepo.GetPlayersByFifaCode(fifaCode);
+
+            lbPlayers.Items.Clear();
+            lbPlayers.Items.AddRange(playerList.ToArray());
+        }
+
+        private bool FormValid() => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
+
         private UserPreferences GetCombinedPreferences()
             => new UserPreferences
             {
@@ -128,34 +157,5 @@ namespace ViktorPetrina
                 FavouriteTeam = cbTeams.SelectedItem as Team,
                 FavouritePlayers = lbPlayers.SelectedItems.Cast<Player>().ToList()
             };
-
-        private bool FormValid() => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
-
-        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
-        {
-            lblPlayerName.Text = "Ime: " + (lbPlayers.SelectedItem as Player).Name;
-            lblPlayerNumber.Text = "Broj: " + (lbPlayers.SelectedItem as Player).ShirtNumber.ToString();
-            lblPlayerIsCaptain.Text = (lbPlayers.SelectedItem as Player).Captain ? "Kapetan: Da" : "Kapetan: Ne";
-
-            if (PreferencesUtils.PreferencesExist())
-            {
-                lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
-                    .FavouritePlayers.Contains(lbPlayers.SelectedItem as Player) ? "Da" : "Ne";
-            }
-
-            preferencesSaved = false;
-        }
-
-        /// <summary>
-        /// Must be called before InitializeContent()s
-        /// </summary>
-        private void SetCulture(string lang)
-        {
-            var culture = new CultureInfo(lang);
-
-            Thread.CurrentThread.CurrentUICulture = culture;
-            Thread.CurrentThread.CurrentCulture = culture;
-        }
-
     }
 }

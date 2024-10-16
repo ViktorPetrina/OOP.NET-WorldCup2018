@@ -156,7 +156,6 @@
             Controls.Add(gbGender);
             Controls.Add(btnConfirm);
             Name = "SettingsForm";
-            FormClosing += SettingsForm_FormClosing;
             Load += SettingsForm_Load;
             gbGender.ResumeLayout(false);
             gbGender.PerformLayout();

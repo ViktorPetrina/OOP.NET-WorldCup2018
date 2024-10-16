@@ -32,19 +32,23 @@
             lblChooseTeam = new Label();
             cbTeams = new ComboBox();
             lbPlayers = new ListBox();
-            pictureBox1 = new PictureBox();
+            pbPlayerImage = new PictureBox();
             progressBar1 = new ProgressBar();
             btnConfirm = new Button();
             lblFavTeamLbl = new Label();
             lbFavPlayers = new ListBox();
             label1 = new Label();
             label2 = new Label();
+            lblPlayerNameLabel = new Label();
+            lblPlayerNumberLabel = new Label();
+            lblPlayerIsCaptainLabel = new Label();
+            lblPlayerIsFavouriteLabel = new Label();
+            lblFavTeam = new Label();
             lblPlayerName = new Label();
             lblPlayerNumber = new Label();
             lblPlayerIsCaptain = new Label();
             lblPlayerIsFavourite = new Label();
-            lblFavTeam = new Label();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbPlayerImage).BeginInit();
             SuspendLayout();
             // 
             // lblChooseTeam
@@ -67,11 +71,11 @@
             lbPlayers.SelectionMode = SelectionMode.MultiExtended;
             lbPlayers.SelectedValueChanged += lbPlayers_SelectedValueChanged;
             // 
-            // pictureBox1
+            // pbPlayerImage
             // 
-            resources.ApplyResources(pictureBox1, "pictureBox1");
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.TabStop = false;
+            resources.ApplyResources(pbPlayerImage, "pbPlayerImage");
+            pbPlayerImage.Name = "pbPlayerImage";
+            pbPlayerImage.TabStop = false;
             // 
             // progressBar1
             // 
@@ -95,6 +99,7 @@
             lbFavPlayers.FormattingEnabled = true;
             resources.ApplyResources(lbFavPlayers, "lbFavPlayers");
             lbFavPlayers.Name = "lbFavPlayers";
+            lbFavPlayers.SelectedValueChanged += lbFavPlayers_SelectedValueChanged;
             // 
             // label1
             // 
@@ -105,6 +110,31 @@
             // 
             resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
+            // 
+            // lblPlayerNameLabel
+            // 
+            resources.ApplyResources(lblPlayerNameLabel, "lblPlayerNameLabel");
+            lblPlayerNameLabel.Name = "lblPlayerNameLabel";
+            // 
+            // lblPlayerNumberLabel
+            // 
+            resources.ApplyResources(lblPlayerNumberLabel, "lblPlayerNumberLabel");
+            lblPlayerNumberLabel.Name = "lblPlayerNumberLabel";
+            // 
+            // lblPlayerIsCaptainLabel
+            // 
+            resources.ApplyResources(lblPlayerIsCaptainLabel, "lblPlayerIsCaptainLabel");
+            lblPlayerIsCaptainLabel.Name = "lblPlayerIsCaptainLabel";
+            // 
+            // lblPlayerIsFavouriteLabel
+            // 
+            resources.ApplyResources(lblPlayerIsFavouriteLabel, "lblPlayerIsFavouriteLabel");
+            lblPlayerIsFavouriteLabel.Name = "lblPlayerIsFavouriteLabel";
+            // 
+            // lblFavTeam
+            // 
+            resources.ApplyResources(lblFavTeam, "lblFavTeam");
+            lblFavTeam.Name = "lblFavTeam";
             // 
             // lblPlayerName
             // 
@@ -126,34 +156,33 @@
             resources.ApplyResources(lblPlayerIsFavourite, "lblPlayerIsFavourite");
             lblPlayerIsFavourite.Name = "lblPlayerIsFavourite";
             // 
-            // lblFavTeam
-            // 
-            resources.ApplyResources(lblFavTeam, "lblFavTeam");
-            lblFavTeam.Name = "lblFavTeam";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lblFavTeam);
             Controls.Add(lblPlayerIsFavourite);
             Controls.Add(lblPlayerIsCaptain);
             Controls.Add(lblPlayerNumber);
             Controls.Add(lblPlayerName);
+            Controls.Add(lblFavTeam);
+            Controls.Add(lblPlayerIsFavouriteLabel);
+            Controls.Add(lblPlayerIsCaptainLabel);
+            Controls.Add(lblPlayerNumberLabel);
+            Controls.Add(lblPlayerNameLabel);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lbFavPlayers);
             Controls.Add(lblFavTeamLbl);
             Controls.Add(btnConfirm);
             Controls.Add(progressBar1);
-            Controls.Add(pictureBox1);
+            Controls.Add(pbPlayerImage);
             Controls.Add(lbPlayers);
             Controls.Add(cbTeams);
             Controls.Add(lblChooseTeam);
             Name = "MainForm";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbPlayerImage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,17 +192,21 @@
         private Label lblChooseTeam;
         private ComboBox cbTeams;
         private ListBox lbPlayers;
-        private PictureBox pictureBox1;
+        private PictureBox pbPlayerImage;
         private ProgressBar progressBar1;
         private Button btnConfirm;
         private Label lblFavTeamLbl;
         private ListBox lbFavPlayers;
         private Label label1;
         private Label label2;
+        private Label lblPlayerNameLabel;
+        private Label lblPlayerNumberLabel;
+        private Label lblPlayerIsCaptainLabel;
+        private Label lblPlayerIsFavouriteLabel;
+        private Label lblFavTeam;
         private Label lblPlayerName;
         private Label lblPlayerNumber;
         private Label lblPlayerIsCaptain;
         private Label lblPlayerIsFavourite;
-        private Label lblFavTeam;
     }
 }

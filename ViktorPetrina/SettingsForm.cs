@@ -1,6 +1,6 @@
-using DataLayer.Model;
-using DataLayer.Utilities;
 using System.Text;
+using WinFormApp.Model;
+using WinFormApp.Utilities;
 
 namespace ViktorPetrina
 {
@@ -46,11 +46,6 @@ namespace ViktorPetrina
             rbtnApi.Checked = preferences.DataSource.Equals(UserPreferences.SourceType.API);
             rbtnJson.Checked = !rbtnApi.Checked;
 
-        }
-
-        private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            MessageBox.Show("form is closing", "", MessageBoxButtons.OK);
         }
 
         private UserPreferences GetPreferencesFromUser()

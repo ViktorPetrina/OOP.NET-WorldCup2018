@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema
+    Microsoft ResX Schema 
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -123,14 +123,14 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblChooseTeam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>30, 81</value>
+    <value>38, 101</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblChooseTeam.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lblChooseTeam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>164, 20</value>
+    <value>194, 25</value>
   </data>
   <data name="lblChooseTeam.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -148,16 +148,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblChooseTeam.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>18</value>
   </data>
   <data name="cbTeams.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 78</value>
+    <value>251, 98</value>
   </data>
   <data name="cbTeams.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="cbTeams.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 28</value>
+    <value>199, 33</value>
   </data>
   <data name="cbTeams.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -172,19 +172,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbTeams.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>17</value>
   </data>
   <data name="lbPlayers.ItemHeight" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>25</value>
   </data>
   <data name="lbPlayers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 48</value>
+    <value>500, 60</value>
   </data>
   <data name="lbPlayers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="lbPlayers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 224</value>
+    <value>272, 279</value>
   </data>
   <data name="lbPlayers.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -199,40 +199,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbPlayers.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>16</value>
   </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>655, 29</value>
+  <data name="pbPlayerImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>819, 36</value>
   </data>
-  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="pbPlayerImage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>199, 181</value>
+  <data name="pbPlayerImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 226</value>
   </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="pbPlayerImage.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
+  <data name="&gt;&gt;pbPlayerImage.Name" xml:space="preserve">
+    <value>pbPlayerImage</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;pbPlayerImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pbPlayerImage.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;pbPlayerImage.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 124</value>
+    <value>42, 155</value>
   </data>
   <data name="progressBar1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 27</value>
+    <value>408, 34</value>
   </data>
   <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -247,16 +247,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="btnConfirm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>702, 664</value>
+    <value>878, 830</value>
   </data>
   <data name="btnConfirm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="btnConfirm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 42</value>
+    <value>190, 52</value>
   </data>
   <data name="btnConfirm.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -274,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnConfirm.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="lblFavTeamLbl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -283,13 +283,13 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="lblFavTeamLbl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 18</value>
+    <value>14, 22</value>
   </data>
   <data name="lblFavTeamLbl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="lblFavTeamLbl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 28</value>
+    <value>278, 32</value>
   </data>
   <data name="lblFavTeamLbl.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -307,19 +307,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFavTeamLbl.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="lbFavPlayers.ItemHeight" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>25</value>
   </data>
   <data name="lbFavPlayers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 354</value>
+    <value>500, 442</value>
   </data>
   <data name="lbFavPlayers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="lbFavPlayers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 104</value>
+    <value>272, 129</value>
   </data>
   <data name="lbFavPlayers.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -334,19 +334,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbFavPlayers.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 332</value>
+    <value>500, 415</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 20</value>
+    <value>128, 25</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -364,19 +364,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 26</value>
+    <value>500, 32</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 20</value>
+    <value>172, 25</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -394,130 +394,145 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
-  <data name="lblPlayerName.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPlayerNameLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblPlayerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>655, 223</value>
+  <data name="lblPlayerNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>819, 279</value>
   </data>
-  <data name="lblPlayerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
+  <data name="lblPlayerNameLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="lblPlayerName.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPlayerNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 25</value>
+  </data>
+  <data name="lblPlayerNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="lblPlayerName.Text" xml:space="preserve">
+  <data name="lblPlayerNameLabel.Text" xml:space="preserve">
     <value>Ime:</value>
   </data>
-  <data name="&gt;&gt;lblPlayerName.Name" xml:space="preserve">
-    <value>lblPlayerName</value>
+  <data name="&gt;&gt;lblPlayerNameLabel.Name" xml:space="preserve">
+    <value>lblPlayerNameLabel</value>
   </data>
-  <data name="&gt;&gt;lblPlayerName.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerNameLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblPlayerName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerNameLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblPlayerName.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;lblPlayerNameLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="lblPlayerNumber.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPlayerNumberLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblPlayerNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>655, 269</value>
+  <data name="lblPlayerNumberLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>819, 336</value>
   </data>
-  <data name="lblPlayerNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 20</value>
+  <data name="lblPlayerNumberLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="lblPlayerNumber.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPlayerNumberLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 25</value>
+  </data>
+  <data name="lblPlayerNumberLabel.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="lblPlayerNumber.Text" xml:space="preserve">
+  <data name="lblPlayerNumberLabel.Text" xml:space="preserve">
     <value>Broj:</value>
   </data>
-  <data name="&gt;&gt;lblPlayerNumber.Name" xml:space="preserve">
-    <value>lblPlayerNumber</value>
+  <data name="&gt;&gt;lblPlayerNumberLabel.Name" xml:space="preserve">
+    <value>lblPlayerNumberLabel</value>
   </data>
-  <data name="&gt;&gt;lblPlayerNumber.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerNumberLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblPlayerNumber.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerNumberLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblPlayerNumber.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;lblPlayerNumberLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="lblPlayerIsCaptain.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPlayerIsCaptainLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblPlayerIsCaptain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>655, 312</value>
+  <data name="lblPlayerIsCaptainLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>819, 390</value>
   </data>
-  <data name="lblPlayerIsCaptain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+  <data name="lblPlayerIsCaptainLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="lblPlayerIsCaptain.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPlayerIsCaptainLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 25</value>
+  </data>
+  <data name="lblPlayerIsCaptainLabel.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="lblPlayerIsCaptain.Text" xml:space="preserve">
+  <data name="lblPlayerIsCaptainLabel.Text" xml:space="preserve">
     <value>Kapetan:</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsCaptain.Name" xml:space="preserve">
-    <value>lblPlayerIsCaptain</value>
+  <data name="&gt;&gt;lblPlayerIsCaptainLabel.Name" xml:space="preserve">
+    <value>lblPlayerIsCaptainLabel</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsCaptain.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerIsCaptainLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsCaptain.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerIsCaptainLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsCaptain.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;lblPlayerIsCaptainLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="lblPlayerIsFavourite.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblPlayerIsFavouriteLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblPlayerIsFavourite.Location" type="System.Drawing.Point, System.Drawing">
-    <value>655, 354</value>
+  <data name="lblPlayerIsFavouriteLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>819, 442</value>
   </data>
-  <data name="lblPlayerIsFavourite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 20</value>
+  <data name="lblPlayerIsFavouriteLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="lblPlayerIsFavourite.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblPlayerIsFavouriteLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 25</value>
+  </data>
+  <data name="lblPlayerIsFavouriteLabel.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="lblPlayerIsFavourite.Text" xml:space="preserve">
+  <data name="lblPlayerIsFavouriteLabel.Text" xml:space="preserve">
     <value>Favorit:</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsFavourite.Name" xml:space="preserve">
-    <value>lblPlayerIsFavourite</value>
+  <data name="&gt;&gt;lblPlayerIsFavouriteLabel.Name" xml:space="preserve">
+    <value>lblPlayerIsFavouriteLabel</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsFavourite.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerIsFavouriteLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsFavourite.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblPlayerIsFavouriteLabel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblPlayerIsFavourite.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;lblPlayerIsFavouriteLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="lblFavTeam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblFavTeam.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 26</value>
+    <value>291, 32</value>
+  </data>
+  <data name="lblFavTeam.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
   <data name="lblFavTeam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 20</value>
+    <value>19, 25</value>
   </data>
   <data name="lblFavTeam.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
   <data name="lblFavTeam.Text" xml:space="preserve">
-    <value>Not selected</value>
+    <value>-</value>
   </data>
   <data name="&gt;&gt;lblFavTeam.Name" xml:space="preserve">
     <value>lblFavTeam</value>
@@ -529,16 +544,149 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFavTeam.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblPlayerName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblPlayerName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPlayerName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>897, 279</value>
+  </data>
+  <data name="lblPlayerName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblPlayerName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 25</value>
+  </data>
+  <data name="lblPlayerName.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="lblPlayerName.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerName.Name" xml:space="preserve">
+    <value>lblPlayerName</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerName.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblPlayerNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPlayerNumber.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPlayerNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>923, 336</value>
+  </data>
+  <data name="lblPlayerNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblPlayerNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 25</value>
+  </data>
+  <data name="lblPlayerNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="lblPlayerNumber.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerNumber.Name" xml:space="preserve">
+    <value>lblPlayerNumber</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerNumber.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblPlayerIsCaptain.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPlayerIsCaptain.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPlayerIsCaptain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>923, 390</value>
+  </data>
+  <data name="lblPlayerIsCaptain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblPlayerIsCaptain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 25</value>
+  </data>
+  <data name="lblPlayerIsCaptain.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="lblPlayerIsCaptain.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsCaptain.Name" xml:space="preserve">
+    <value>lblPlayerIsCaptain</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsCaptain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsCaptain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsCaptain.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblPlayerIsFavourite.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPlayerIsFavourite.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblPlayerIsFavourite.Location" type="System.Drawing.Point, System.Drawing">
+    <value>923, 442</value>
+  </data>
+  <data name="lblPlayerIsFavourite.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="lblPlayerIsFavourite.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 25</value>
+  </data>
+  <data name="lblPlayerIsFavourite.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="lblPlayerIsFavourite.Text" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsFavourite.Name" xml:space="preserve">
+    <value>lblPlayerIsFavourite</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsFavourite.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsFavourite.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblPlayerIsFavourite.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 20</value>
+    <value>10, 25</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>890, 740</value>
+    <value>1112, 925</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>

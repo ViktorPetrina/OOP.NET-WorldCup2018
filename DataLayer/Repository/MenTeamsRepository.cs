@@ -38,12 +38,13 @@ namespace DataLayer.Repository
             settings.Converters.Add(new TypeOfEventConverter());
             settings.Converters.Add(new ParseStringConverter());
             settings.Converters.Add(new PositionConverter());
-            // rjesenje: u Match json-u nije isti team kao u Team jsonu (fifa_code != code)
+            
             Match match = new Match();
             if (data != null)
             {
                match = JsonConvert.DeserializeObject<List<Match>>(data, settings).First(); 
             }
+
             if (match.HomeTeam.FifaCode == code)
             {
                 players.AddRange(match.HomeTeamStatistics.StartingEleven);

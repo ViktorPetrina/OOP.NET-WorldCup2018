@@ -135,16 +135,16 @@
   <data name="lblFavTeamLbl.Text" xml:space="preserve">
     <value>Favourite team:</value>
   </data>
-  <data name="lblPlayerIsCaptain.Text" xml:space="preserve">
+  <data name="lblPlayerIsCaptainLabel.Text" xml:space="preserve">
     <value>Captain:</value>
   </data>
-  <data name="lblPlayerIsFavourite.Text" xml:space="preserve">
+  <data name="lblPlayerIsFavouriteLabel.Text" xml:space="preserve">
     <value>Favourite:</value>
   </data>
-  <data name="lblPlayerName.Text" xml:space="preserve">
+  <data name="lblPlayerNameLabel.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
-  <data name="lblPlayerNumber.Text" xml:space="preserve">
+  <data name="lblPlayerNumberLabel.Text" xml:space="preserve">
     <value>Shirt number:</value>
   </data>
 </root>
