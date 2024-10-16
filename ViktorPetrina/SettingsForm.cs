@@ -22,8 +22,8 @@ namespace ViktorPetrina
                 return;
             }
 
-            new MainForm(GetPreferencesFromUser()).Show();
-            Hide();
+            Tag = GetPreferencesFromUser();
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e) => Application.Exit();
@@ -50,7 +50,7 @@ namespace ViktorPetrina
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //FileManager.SavePrefrences(GetPreferencesFromUser());
+            MessageBox.Show("form is closing", "", MessageBoxButtons.OK);
         }
 
         private UserPreferences GetPreferencesFromUser()

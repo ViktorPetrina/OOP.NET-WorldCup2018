@@ -10,11 +10,17 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// TODO: sredi da su rijeci lokaliziranje, sredi da igraci imaju slike, pogledaj zasto su nekad obrnuti timovi i popravi
+// TODO: sredi da su rijeci lokaliziranje(rijeseno),
+// popravi buggy izlaz iz forme,
+// sredi da igraci imaju slike,
+// pogledaj zasto su nekad obrnuti timovi i popravi
+// REFCTORING: napravi novi class library za utilitije jer to ne spada u data layer
+
 
 namespace ViktorPetrina
 {
@@ -28,13 +34,29 @@ namespace ViktorPetrina
 
         private bool preferencesSaved = true;
 
-        public MainForm(UserPreferences preferences_)
+        public MainForm()
         {
             InitializeComponent();
+
+            SettingsForm form = new SettingsForm();
+            form.ShowDialog();
+
+            settingsPreferences = (form.Tag as UserPreferences);
+
             StartPosition = FormStartPosition.CenterScreen;
             menRepo = new MenTeamsRepository();
-            settingsPreferences = preferences_;
-            SetCulture("en");
+
+            switch (settingsPreferences.PreferedLanguage)
+            {
+                case UserPreferences.Language.English:
+                    SetCulture("en");
+                    break;
+                case UserPreferences.Language.Croatian:
+                    SetCulture("hr");
+                    break;
+                default:
+                    throw new Exception("Not supported language.");
+            } 
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -48,8 +70,6 @@ namespace ViktorPetrina
             }
 
             var preferences = PreferencesUtils.LoadPreferences();
-
-            // izvadi to u konstantu ili u nesto vezano uz resurse i jezike...
 
             lblFavTeam.Text = preferences.FavouriteTeam?.Country;
             preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
@@ -80,14 +100,23 @@ namespace ViktorPetrina
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit",
-            //    MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            //    == DialogResult.Yes && FormValid())
-            //{
-            //    PreferencesUtils.SavePrefrences(GetCombinedPreferences());
-            //}
+            if (preferencesSaved)
+            {
+                return;
+            }
 
-            //Application.Exit();
+            DialogResult result = MessageBox.Show(
+                EXIT_CONFIRMATION_MESSAGE, 
+                "Exit", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question);
+
+            if (FormValid() && result == DialogResult.Yes)
+            {
+                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+            }
+
+            Environment.Exit(0);
         }
 
         private UserPreferences GetCombinedPreferences()
@@ -117,44 +146,16 @@ namespace ViktorPetrina
             preferencesSaved = false;
         }
 
+        /// <summary>
+        /// Must be called before InitializeContent()s
+        /// </summary>
         private void SetCulture(string lang)
         {
             var culture = new CultureInfo(lang);
 
             Thread.CurrentThread.CurrentUICulture = culture;
             Thread.CurrentThread.CurrentCulture = culture;
-
-            Controls.Clear();
-            InitializeComponent();
-            MainForm_Load(this, new EventArgs());
         }
 
-        private void btnChangeCulture_Click(object sender, EventArgs e)
-        {
-            if (Thread.CurrentThread.CurrentCulture.Name == "hr")
-            {
-                SetCulture("en");
-            }
-            else
-            {
-                SetCulture("hr");
-            }
-        }
-
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!preferencesSaved && MessageBox.Show(EXIT_CONFIRMATION_MESSAGE, "Exit",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                == DialogResult.Yes && FormValid())
-            {
-                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
-            }
-            else
-            {
-                Close();
-            }
-
-            Application.Exit();
-        }
     }
 }

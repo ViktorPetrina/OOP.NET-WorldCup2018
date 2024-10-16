@@ -43,7 +43,6 @@
             lblPlayerNumber = new Label();
             lblPlayerIsCaptain = new Label();
             lblPlayerIsFavourite = new Label();
-            btnChangeCulture = new Button();
             lblFavTeam = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -127,13 +126,6 @@
             resources.ApplyResources(lblPlayerIsFavourite, "lblPlayerIsFavourite");
             lblPlayerIsFavourite.Name = "lblPlayerIsFavourite";
             // 
-            // btnChangeCulture
-            // 
-            resources.ApplyResources(btnChangeCulture, "btnChangeCulture");
-            btnChangeCulture.Name = "btnChangeCulture";
-            btnChangeCulture.UseVisualStyleBackColor = true;
-            btnChangeCulture.Click += btnChangeCulture_Click;
-            // 
             // lblFavTeam
             // 
             resources.ApplyResources(lblFavTeam, "lblFavTeam");
@@ -144,7 +136,6 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(lblFavTeam);
-            Controls.Add(btnChangeCulture);
             Controls.Add(lblPlayerIsFavourite);
             Controls.Add(lblPlayerIsCaptain);
             Controls.Add(lblPlayerNumber);
@@ -161,7 +152,6 @@
             Controls.Add(lblChooseTeam);
             Name = "MainForm";
             FormClosing += MainForm_FormClosing;
-            FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -184,7 +174,6 @@
         private Label lblPlayerNumber;
         private Label lblPlayerIsCaptain;
         private Label lblPlayerIsFavourite;
-        private Button btnChangeCulture;
         private Label lblFavTeam;
     }
 }
