@@ -48,6 +48,7 @@
             lblPlayerNumber = new Label();
             lblPlayerIsCaptain = new Label();
             lblPlayerIsFavourite = new Label();
+            btnChoosePlayerImage = new Button();
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).BeginInit();
             SuspendLayout();
             // 
@@ -156,10 +157,18 @@
             resources.ApplyResources(lblPlayerIsFavourite, "lblPlayerIsFavourite");
             lblPlayerIsFavourite.Name = "lblPlayerIsFavourite";
             // 
+            // btnChoosePlayerImage
+            // 
+            resources.ApplyResources(btnChoosePlayerImage, "btnChoosePlayerImage");
+            btnChoosePlayerImage.Name = "btnChoosePlayerImage";
+            btnChoosePlayerImage.UseVisualStyleBackColor = true;
+            btnChoosePlayerImage.Click += btnChoosePlayerImage_Click;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnChoosePlayerImage);
             Controls.Add(lblPlayerIsFavourite);
             Controls.Add(lblPlayerIsCaptain);
             Controls.Add(lblPlayerNumber);
@@ -208,5 +217,6 @@
         private Label lblPlayerNumber;
         private Label lblPlayerIsCaptain;
         private Label lblPlayerIsFavourite;
+        private Button btnChoosePlayerImage;
     }
 }

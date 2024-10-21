@@ -120,6 +120,9 @@
   <data name="btnChangeCulture.Text" xml:space="preserve">
     <value>Change culture</value>
   </data>
+  <data name="btnChoosePlayerImage.Text" xml:space="preserve">
+    <value>Choose image</value>
+  </data>
   <data name="btnConfirm.Text" xml:space="preserve">
     <value>Confirm</value>
   </data>

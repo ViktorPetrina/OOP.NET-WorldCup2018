@@ -120,6 +120,9 @@
   <data name="btnChangeCulture.Text" xml:space="preserve">
     <value>Promjeni kulturu</value>
   </data>
+  <data name="btnChoosePlayerImage.Text" xml:space="preserve">
+    <value>Odaberi sliku</value>
+  </data>
   <data name="btnConfirm.Text" xml:space="preserve">
     <value>Potvrdi</value>
   </data>

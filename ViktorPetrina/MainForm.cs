@@ -25,6 +25,7 @@ namespace ViktorPetrina
     {
         private const string GENERIC_NOT_SELECTED_ERROR = "A team and at least one player must be selected!";
         private const string EXIT_CONFIRMATION_MESSAGE = "Do you want to save selected preferences?";
+        private const string DEFAULT_IMAGE_PATH = @"/Resource/Images/default.png";
 
         private IFootballRepository menRepo;
         private UserPreferences settingsPreferences;
@@ -33,16 +34,34 @@ namespace ViktorPetrina
 
         public MainForm()
         {
+            Initialize();
+        }
+
+        private void Initialize()
+        {
             InitializeComponent();
-
-            SettingsForm form = new SettingsForm();
-            form.ShowDialog();
-
-            settingsPreferences = (form.Tag as UserPreferences);
+            InitializeUserPreferences();
 
             StartPosition = FormStartPosition.CenterScreen;
             menRepo = new MenTeamsRepository();
 
+            InitializeLanguage();
+            InitializeDefaultImage();
+        }
+
+        private void InitializeDefaultImage()
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            string fullPath = string.Format(
+                "{0}Resources\\Images\\default.png",
+                Path.GetFullPath(Path.Combine(basePath, @"..\..\..\")));
+
+            pbPlayerImage.Image = Image.FromFile(fullPath);
+        }
+
+        private void InitializeLanguage()
+        {
             switch (settingsPreferences.PreferedLanguage)
             {
                 case UserPreferences.Language.English:
@@ -54,6 +73,14 @@ namespace ViktorPetrina
                 default:
                     throw new Exception("Not supported language.");
             }
+        }
+
+        private void InitializeUserPreferences()
+        {
+            SettingsForm form = new SettingsForm();
+            form.ShowDialog();
+
+            settingsPreferences = (form.Tag as UserPreferences);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -157,5 +184,19 @@ namespace ViktorPetrina
                 FavouriteTeam = cbTeams.SelectedItem as Team,
                 FavouritePlayers = lbPlayers.SelectedItems.Cast<Player>().ToList()
             };
+
+        private void btnChoosePlayerImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Pictures|*.bmp;*.jpg;*.jpeg;*.png;|All files|*.*";
+            ofd.InitialDirectory = Application.StartupPath;
+
+            //ofd.SafeFileName - ime datoteke i ekstenzija
+            //ofd.FileName - abs putanja i datoteka
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
     }
 }
