@@ -23,7 +23,23 @@ namespace ViktorPetrina
             }
 
             Tag = GetPreferencesFromUser();
-            PreferencesUtils.SavePrefrences(GetPreferencesFromUser());
+
+            if (PreferencesUtils.PreferencesExist())
+            {
+                var preferences = PreferencesUtils.LoadPreferences();
+                var userPreferences = GetPreferencesFromUser();
+
+                preferences.DataSource = userPreferences.DataSource;
+                preferences.TeamGender = userPreferences.TeamGender;
+                preferences.PreferedLanguage = userPreferences.PreferedLanguage;
+
+                PreferencesUtils.SavePrefrences(preferences); 
+            }
+            else
+            {
+                PreferencesUtils.SavePrefrences(GetPreferencesFromUser());
+            }
+
             Close();
         }
 

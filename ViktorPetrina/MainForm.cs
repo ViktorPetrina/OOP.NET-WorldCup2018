@@ -18,7 +18,6 @@ using WinFormApp.Model;
 using System.Numerics;
 
 // TODO:
-// neka se spreme user preferences i ako nije promjenjeno nista na main formi
 
 namespace ViktorPetrina
 {
@@ -108,11 +107,6 @@ namespace ViktorPetrina
             Environment.Exit(0);
         }
 
-        //private bool preferencesIsDifferent()
-        //{
-        //    GetCombinedPreferences();
-        //}
-
         private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
         {
             var player = lbPlayers.SelectedItem as Player;
@@ -135,8 +129,6 @@ namespace ViktorPetrina
             ofd.Filter = "Pictures|*.bmp;*.jpg;*.jpeg;*.png;|All files|*.*";
             ofd.InitialDirectory = Application.StartupPath;
 
-            //ofd.SafeFileName - ime datoteke i ekstenzija
-            //ofd.FileName - abs putanja i datoteka
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 selectedPlayer.ImagePath = ofd.FileName;
@@ -154,7 +146,7 @@ namespace ViktorPetrina
         {
             InitializeUserPreferences();
             StartPosition = FormStartPosition.CenterScreen;
-            menRepo = new MenTeamsRepository();
+            menRepo = new WebTeamsRepository("men");
             InitializeLanguage();
             InitializeComponent();
             InitializeDefaultImage();
@@ -202,7 +194,7 @@ namespace ViktorPetrina
             lblPlayerNumber.Text = player.ShirtNumber.ToString();
             lblPlayerIsCaptain.Text = player.Captain ? "Da" : "Ne";
 
-            if (PreferencesUtils.PreferencesExist())
+            if (PreferencesUtils.PreferencesExist() && PreferencesUtils.LoadPreferences().FavouritePlayers != null)
             {
                 lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
                     .FavouritePlayers.Contains(player) ? "Da" : "Ne";

@@ -14,10 +14,16 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
-    public class MenTeamsRepository : IFootballRepository
+    public class WebTeamsRepository : IFootballRepository
     {
-        private readonly string TEAMS_ENDPOINT = @"https://worldcup-vua.nullbit.hr/men/teams";
-        private readonly string COUNTRY_MATCHES_ENDPOINT = @"https://worldcup-vua.nullbit.hr/men/matches/country?fifa_code=";
+        private readonly string TEAMS_ENDPOINT;
+        private readonly string COUNTRY_MATCHES_ENDPOINT;
+
+        public WebTeamsRepository(string gender)
+        {
+            TEAMS_ENDPOINT = @"https://worldcup-vua.nullbit.hr/" + gender + @"/teams";
+            COUNTRY_MATCHES_ENDPOINT = $"https://worldcup-vua.nullbit.hr/" + gender + @"/matches/country?fifa_code=";
+        }
 
         public List<GroupResult> GetAllGroupResults()
         {

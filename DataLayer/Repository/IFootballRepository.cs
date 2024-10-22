@@ -9,7 +9,7 @@ namespace DataLayer.Repository
 {
     public interface IFootballRepository
     {
-        List<DataLayer.Model.Match> GetAllMatches();
+        List<Match> GetAllMatches();
         List<Match> GetMatchesByCountry(string fifaCode);
         List<Player> GetPlayersByFifaCode(string fifaCode);
         List<Team> GetAllTeams();
