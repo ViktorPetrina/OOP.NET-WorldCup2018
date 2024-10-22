@@ -15,9 +15,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WinFormApp.Model;
+using System.Numerics;
 
 // TODO:
-// sredi da igraci imaju slike
+// neka se spreme user preferences i ako nije promjenjeno nista na main formi
 
 namespace ViktorPetrina
 {
@@ -31,21 +32,131 @@ namespace ViktorPetrina
         private UserPreferences settingsPreferences;
 
         private bool preferencesSaved = true;
+        private bool pictureChanged = false;
+        private Player selectedPlayer;
 
         public MainForm()
         {
             Initialize();
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            List<Team> teams = menRepo.GetAllTeams();
+            cbTeams.Items.AddRange(teams.ToArray());
+
+            if (!PreferencesUtils.PreferencesExist())
+            {
+                return;
+            }
+
+            var preferences = PreferencesUtils.LoadPreferences();
+
+            lblFavTeam.Text = preferences.FavouriteTeam?.Country;
+            preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
+        }
+
+        private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ShowTeam(cbTeams.SelectedItem as Team);
+
+            preferencesSaved = false;
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            if (PreferencesUtils.PreferencesExist() && pictureChanged)
+            {
+                var preferences = PreferencesUtils.LoadPreferences();
+                preferences.FavouritePlayers = lbFavPlayers.Items.Cast<Player>().ToList();
+                PreferencesUtils.SavePrefrences(preferences);
+
+                preferencesSaved = true;
+                pictureChanged = false;
+                return;
+            }
+
+            if (!FormValid() && !pictureChanged)
+            {
+                MessageBox.Show(GENERIC_NOT_SELECTED_ERROR, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+            preferencesSaved = true;
+            pictureChanged = false;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (preferencesSaved)
+            {
+                return;
+            }
+
+            DialogResult result = MessageBox.Show(
+                EXIT_CONFIRMATION_MESSAGE,
+                "Exit",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (FormValid() && result == DialogResult.Yes)
+            {
+                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+            }
+
+            Environment.Exit(0);
+        }
+
+        //private bool preferencesIsDifferent()
+        //{
+        //    GetCombinedPreferences();
+        //}
+
+        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var player = lbPlayers.SelectedItem as Player;
+            ShowPlayer(player);
+
+            preferencesSaved = false;
+            selectedPlayer = player;
+        }
+
+        private void lbFavPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var player = lbFavPlayers.SelectedItem as Player;
+            ShowPlayer(player);
+            selectedPlayer = player;
+        }
+
+        private void btnChoosePlayerImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Pictures|*.bmp;*.jpg;*.jpeg;*.png;|All files|*.*";
+            ofd.InitialDirectory = Application.StartupPath;
+
+            //ofd.SafeFileName - ime datoteke i ekstenzija
+            //ofd.FileName - abs putanja i datoteka
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                selectedPlayer.ImagePath = ofd.FileName;
+                pbPlayerImage.Image = Image.FromFile(selectedPlayer.ImagePath);
+                pictureChanged = true;
+            }
+        }
+
+        private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+
         private void Initialize()
         {
-            InitializeComponent();
             InitializeUserPreferences();
-
             StartPosition = FormStartPosition.CenterScreen;
             menRepo = new MenTeamsRepository();
-
             InitializeLanguage();
+            InitializeComponent();
             InitializeDefaultImage();
         }
 
@@ -83,76 +194,10 @@ namespace ViktorPetrina
             settingsPreferences = (form.Tag as UserPreferences);
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            List<Team> teams = menRepo.GetAllTeams();
-            cbTeams.Items.AddRange(teams.ToArray());
-
-            if (!PreferencesUtils.PreferencesExist())
-            {
-                return;
-            }
-
-            var preferences = PreferencesUtils.LoadPreferences();
-
-            lblFavTeam.Text = preferences.FavouriteTeam?.Country;
-            preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
-        }
-
-        private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ShowTeam(cbTeams.SelectedItem as Team);
-
-            preferencesSaved = false;
-        }
-
-        private void btnConfirm_Click(object sender, EventArgs e)
-        {
-            if (!FormValid())
-            {
-                MessageBox.Show(GENERIC_NOT_SELECTED_ERROR, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            preferencesSaved = true;
-            PreferencesUtils.SavePrefrences(GetCombinedPreferences());
-        }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (preferencesSaved)
-            {
-                return;
-            }
-
-            DialogResult result = MessageBox.Show(
-                EXIT_CONFIRMATION_MESSAGE,
-                "Exit",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-
-            if (FormValid() && result == DialogResult.Yes)
-            {
-                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
-            }
-
-            Environment.Exit(0);
-        }
-
-        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ShowPlayer(lbPlayers.SelectedItem as Player);
-
-            preferencesSaved = false;
-        }
-
-        private void lbFavPlayers_SelectedValueChanged(object sender, EventArgs e)
-        {
-            ShowPlayer(lbFavPlayers.SelectedItem as Player);
-        }
-
         private void ShowPlayer(Player player)
         {
+            FormClear();
+
             lblPlayerName.Text = player.Name;
             lblPlayerNumber.Text = player.ShirtNumber.ToString();
             lblPlayerIsCaptain.Text = player.Captain ? "Da" : "Ne";
@@ -162,6 +207,20 @@ namespace ViktorPetrina
                 lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
                     .FavouritePlayers.Contains(player) ? "Da" : "Ne";
             }
+
+            if (player.ImagePath != null)
+            {
+                pbPlayerImage.Image = Image.FromFile(player.ImagePath);
+            }
+        }
+
+        private void FormClear()
+        {
+            lblPlayerName.Text = "";
+            lblPlayerNumber.Text = "";
+            lblPlayerIsCaptain.Text = "";
+            lblPlayerIsFavourite.Text = "";
+            InitializeDefaultImage();
         }
 
         private void ShowTeam(Team team)
@@ -173,7 +232,8 @@ namespace ViktorPetrina
             lbPlayers.Items.AddRange(playerList.ToArray());
         }
 
-        private bool FormValid() => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
+        private bool FormValid()
+            => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
 
         private UserPreferences GetCombinedPreferences()
             => new UserPreferences
@@ -184,19 +244,5 @@ namespace ViktorPetrina
                 FavouriteTeam = cbTeams.SelectedItem as Team,
                 FavouritePlayers = lbPlayers.SelectedItems.Cast<Player>().ToList()
             };
-
-        private void btnChoosePlayerImage_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Pictures|*.bmp;*.jpg;*.jpeg;*.png;|All files|*.*";
-            ofd.InitialDirectory = Application.StartupPath;
-
-            //ofd.SafeFileName - ime datoteke i ekstenzija
-            //ofd.FileName - abs putanja i datoteka
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-
-            }
-        }
     }
 }

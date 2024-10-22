@@ -191,6 +191,8 @@ namespace DataLayer.Model
         [JsonProperty("position")]
         public Position Position { get; set; }
 
+        public string ImagePath { get; set; }
+
         public override string ToString()
         {
             return $"({ShirtNumber}) - {Name} ";

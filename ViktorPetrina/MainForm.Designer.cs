@@ -49,7 +49,13 @@
             lblPlayerIsCaptain = new Label();
             lblPlayerIsFavourite = new Label();
             btnChoosePlayerImage = new Button();
+            menuStrip = new MenuStrip();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            savePreferencesToolStripMenuItem = new ToolStripMenuItem();
+            openSettingsToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).BeginInit();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // lblChooseTeam
@@ -164,10 +170,41 @@
             btnChoosePlayerImage.UseVisualStyleBackColor = true;
             btnChoosePlayerImage.Click += btnChoosePlayerImage_Click;
             // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, settingsToolStripMenuItem });
+            resources.ApplyResources(menuStrip, "menuStrip");
+            menuStrip.Name = "menuStrip";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openSettingsToolStripMenuItem });
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { savePreferencesToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(fileToolStripMenuItem, "fileToolStripMenuItem");
+            // 
+            // savePreferencesToolStripMenuItem
+            // 
+            savePreferencesToolStripMenuItem.Name = "savePreferencesToolStripMenuItem";
+            resources.ApplyResources(savePreferencesToolStripMenuItem, "savePreferencesToolStripMenuItem");
+            // 
+            // openSettingsToolStripMenuItem
+            // 
+            openSettingsToolStripMenuItem.Name = "openSettingsToolStripMenuItem";
+            resources.ApplyResources(openSettingsToolStripMenuItem, "openSettingsToolStripMenuItem");
+            openSettingsToolStripMenuItem.Click += openSettingsToolStripMenuItem_Click;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(menuStrip);
             Controls.Add(btnChoosePlayerImage);
             Controls.Add(lblPlayerIsFavourite);
             Controls.Add(lblPlayerIsCaptain);
@@ -188,10 +225,13 @@
             Controls.Add(lbPlayers);
             Controls.Add(cbTeams);
             Controls.Add(lblChooseTeam);
+            MainMenuStrip = menuStrip;
             Name = "MainForm";
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).EndInit();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -218,5 +258,10 @@
         private Label lblPlayerIsCaptain;
         private Label lblPlayerIsFavourite;
         private Button btnChoosePlayerImage;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem settingsToolStripMenuItem;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem savePreferencesToolStripMenuItem;
+        private ToolStripMenuItem openSettingsToolStripMenuItem;
     }
 }

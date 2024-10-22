@@ -23,6 +23,7 @@ namespace ViktorPetrina
             }
 
             Tag = GetPreferencesFromUser();
+            PreferencesUtils.SavePrefrences(GetPreferencesFromUser());
             Close();
         }
 
