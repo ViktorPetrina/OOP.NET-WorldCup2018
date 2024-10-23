@@ -18,6 +18,8 @@ using WinFormApp.Model;
 using System.Numerics;
 
 // TODO:
+// popravi bug, kada se igracu postavi slika i zatim spremi, ne spreme se promjene
+// napravi da se itemi mogu drag and dropat iz players list boxa u fav players list box
 
 namespace ViktorPetrina
 {
@@ -25,13 +27,14 @@ namespace ViktorPetrina
     {
         private const string GENERIC_NOT_SELECTED_ERROR = "A team and at least one player must be selected!";
         private const string EXIT_CONFIRMATION_MESSAGE = "Do you want to save selected preferences?";
-        private const string DEFAULT_IMAGE_PATH = @"/Resource/Images/default.png";
+        private const string DEFAULT_IMAGE_PATH = @"{0}Resources\\Images\\default.png";
 
-        private IFootballRepository menRepo;
+        private IFootballRepository repo;
         private UserPreferences settingsPreferences;
 
         private bool preferencesSaved = true;
         private bool pictureChanged = false;
+        private bool settingsClicked = false;
         private Player selectedPlayer;
 
         public MainForm()
@@ -41,7 +44,7 @@ namespace ViktorPetrina
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            List<Team> teams = menRepo.GetAllTeams();
+            List<Team> teams = repo.GetAllTeams();
             cbTeams.Items.AddRange(teams.ToArray());
 
             if (!PreferencesUtils.PreferencesExist())
@@ -88,16 +91,16 @@ namespace ViktorPetrina
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (preferencesSaved)
+            if (preferencesSaved || settingsClicked)
             {
                 return;
             }
 
             DialogResult result = MessageBox.Show(
-                EXIT_CONFIRMATION_MESSAGE,
-                "Exit",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                        EXIT_CONFIRMATION_MESSAGE,
+                        "Exit",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
 
             if (FormValid() && result == DialogResult.Yes)
             {
@@ -139,6 +142,7 @@ namespace ViktorPetrina
 
         private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            settingsClicked = true;
             Application.Restart();
         }
 
@@ -146,18 +150,43 @@ namespace ViktorPetrina
         {
             InitializeUserPreferences();
             StartPosition = FormStartPosition.CenterScreen;
-            menRepo = new WebTeamsRepository("men");
+            InitalizeRepository();
             InitializeLanguage();
             InitializeComponent();
             InitializeDefaultImage();
         }
+
+        private void InitalizeRepository()
+        {
+            if (settingsPreferences.DataSource == UserPreferences.SourceType.API && 
+                settingsPreferences.TeamGender == UserPreferences.Gender.Male)
+            {
+                repo = new WebTeamsRepository("men");
+            }
+            else if (settingsPreferences.DataSource == UserPreferences.SourceType.API &&
+                settingsPreferences.TeamGender == UserPreferences.Gender.Female)
+            {
+                repo = new WebTeamsRepository("women");
+            }
+            else if (settingsPreferences.DataSource == UserPreferences.SourceType.Json &&
+                settingsPreferences.TeamGender == UserPreferences.Gender.Female)
+            {
+                repo = new FileTeamsRepository("women");
+            }
+            else
+            {
+                repo = new FileTeamsRepository("men");
+            }
+        }
+
+
 
         private void InitializeDefaultImage()
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
             string fullPath = string.Format(
-                "{0}Resources\\Images\\default.png",
+                DEFAULT_IMAGE_PATH,
                 Path.GetFullPath(Path.Combine(basePath, @"..\..\..\")));
 
             pbPlayerImage.Image = Image.FromFile(fullPath);
@@ -218,7 +247,7 @@ namespace ViktorPetrina
         private void ShowTeam(Team team)
         {
             string fifaCode = team.FifaCode;
-            IList<Player> playerList = menRepo.GetPlayersByFifaCode(fifaCode);
+            IList<Player> playerList = repo.GetPlayersByFifaCode(fifaCode);
 
             lbPlayers.Items.Clear();
             lbPlayers.Items.AddRange(playerList.ToArray());

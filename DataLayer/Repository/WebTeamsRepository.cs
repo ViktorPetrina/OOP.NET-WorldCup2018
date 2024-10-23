@@ -35,9 +35,9 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public List<Player> GetPlayersByFifaCode(string code)
+        public List<Player> GetPlayersByFifaCode(string fifaCode)
         {
-            string data = new WebClient().DownloadString(COUNTRY_MATCHES_ENDPOINT + code);
+            string data = new WebClient().DownloadString(COUNTRY_MATCHES_ENDPOINT + fifaCode);
             List<Player> players = new List<Player>();
 
             var settings = new JsonSerializerSettings();
@@ -51,7 +51,7 @@ namespace DataLayer.Repository
                match = JsonConvert.DeserializeObject<List<Match>>(data, settings).First(); 
             }
 
-            if (match.HomeTeam.FifaCode == code)
+            if (match.HomeTeam.FifaCode == fifaCode)
             {
                 players.AddRange(match.HomeTeamStatistics.StartingEleven);
                 players.AddRange(match.HomeTeamStatistics.Substitutes);

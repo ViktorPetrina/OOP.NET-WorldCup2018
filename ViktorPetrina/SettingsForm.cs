@@ -1,6 +1,8 @@
+using System.Diagnostics;
 using System.Text;
 using WinFormApp.Model;
 using WinFormApp.Utilities;
+using DataLayer.Repository;
 
 namespace ViktorPetrina
 {

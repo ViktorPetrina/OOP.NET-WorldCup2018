@@ -221,7 +221,7 @@ namespace DataLayer.Model
         public string Description { get; set; }
     }
 
-    public enum TypeOfEvent { Goal, GoalPenalty, SubstitutionIn, SubstitutionOut, YellowCard, GoalOwn };
+    public enum TypeOfEvent { Goal, GoalPenalty, SubstitutionIn, SubstitutionOut, YellowCard, GoalOwn, RedCard };
 
     public enum Position { Defender, Forward, Goalie, Midfield };
 
@@ -291,6 +291,8 @@ namespace DataLayer.Model
                     return TypeOfEvent.YellowCard;
                 case "yellow-card-second":
                     return TypeOfEvent.YellowCard;
+                case "red-card":
+                    return TypeOfEvent.RedCard;
                 case "goal-penalty":
                     return TypeOfEvent.GoalPenalty;
                 case "goal-own":
