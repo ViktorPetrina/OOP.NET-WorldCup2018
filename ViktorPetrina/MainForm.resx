@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblChooseTeam.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="cbTeams.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 107</value>
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbTeams.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="lbPlayers.ItemHeight" type="System.Int32, mscorlib">
     <value>20</value>
@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbPlayers.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="pbPlayerImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>633, 58</value>
@@ -227,7 +227,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pbPlayerImage.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 153</value>
@@ -251,10 +251,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="btnConfirm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>702, 664</value>
+    <value>701, 665</value>
   </data>
   <data name="btnConfirm.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -278,7 +278,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnConfirm.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="lblFavTeamLbl.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -311,7 +311,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFavTeamLbl.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
+  </data>
+  <metadata name="cmsFavPlayers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>440, 20</value>
+  </metadata>
+  <data name="cmsFavPlayers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 28</value>
+  </data>
+  <data name="&gt;&gt;cmsFavPlayers.Name" xml:space="preserve">
+    <value>cmsFavPlayers</value>
+  </data>
+  <data name="&gt;&gt;cmsFavPlayers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lbFavPlayers.ItemHeight" type="System.Int32, mscorlib">
     <value>20</value>
@@ -338,7 +350,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lbFavPlayers.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
+  </data>
+  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 24</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -368,7 +386,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -398,7 +416,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="lblPlayerNameLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -425,7 +443,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerNameLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="lblPlayerNumberLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -452,7 +470,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerNumberLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="lblPlayerIsCaptainLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -479,7 +497,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerIsCaptainLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblPlayerIsFavouriteLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -506,7 +524,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerIsFavouriteLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="lblFavTeam.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -533,7 +551,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFavTeam.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="lblPlayerName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -563,7 +581,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="lblPlayerNumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -593,7 +611,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerNumber.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="lblPlayerIsCaptain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -623,7 +641,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerIsCaptain.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="lblPlayerIsFavourite.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -653,7 +671,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPlayerIsFavourite.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnChoosePlayerImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>633, 419</value>
@@ -677,29 +695,11 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnChoosePlayerImage.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <metadata name="menuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>145, 17</value>
+    <value>137, 18</value>
   </metadata>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 24</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="openSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="openSettingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 24</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
   <data name="menuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -722,13 +722,31 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 24</value>
+  </data>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>File</value>
   </data>
   <data name="savePreferencesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>204, 26</value>
   </data>
   <data name="savePreferencesToolStripMenuItem.Text" xml:space="preserve">
     <value>Save preferences</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 24</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="openSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 26</value>
+  </data>
+  <data name="openSettingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -745,10 +763,10 @@
   <data name="$this.Text" xml:space="preserve">
     <value>MainForm</value>
   </data>
-  <data name="&gt;&gt;settingsToolStripMenuItem.Name" xml:space="preserve">
-    <value>settingsToolStripMenuItem</value>
+  <data name="&gt;&gt;removeToolStripMenuItem.Name" xml:space="preserve">
+    <value>removeToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;settingsToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;removeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;fileToolStripMenuItem.Name" xml:space="preserve">
@@ -761,6 +779,12 @@
     <value>savePreferencesToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;savePreferencesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Name" xml:space="preserve">
+    <value>settingsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;settingsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openSettingsToolStripMenuItem.Name" xml:space="preserve">

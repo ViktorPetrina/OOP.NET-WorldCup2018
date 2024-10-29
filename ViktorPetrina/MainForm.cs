@@ -19,7 +19,6 @@ using System.Numerics;
 
 // TODO:
 // popravi bug, kada se igracu postavi slika i zatim spremi, ne spreme se promjene
-// napravi da se itemi mogu drag and dropat iz players list boxa u fav players list box
 
 namespace ViktorPetrina
 {
@@ -121,9 +120,7 @@ namespace ViktorPetrina
 
         private void lbFavPlayers_SelectedValueChanged(object sender, EventArgs e)
         {
-            var player = lbFavPlayers.SelectedItem as Player;
-            ShowPlayer(player);
-            selectedPlayer = player;
+
         }
 
         private void btnChoosePlayerImage_Click(object sender, EventArgs e)
@@ -140,10 +137,66 @@ namespace ViktorPetrina
             }
         }
 
+        private void lbPlayers_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (lbPlayers.SelectedItem != null)
+            {
+                lbPlayers.DoDragDrop(lbPlayers.SelectedItem, DragDropEffects.Move);
+            }
+
+            if (e.Button == MouseButtons.Right)
+            {
+                int index = lbFavPlayers.IndexFromPoint(e.Location);
+                if (index != ListBox.NoMatches)
+                {
+                    lbFavPlayers.SelectedIndex = index;
+                }
+            }
+        }
+
         private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsClicked = true;
             Application.Restart();
+        }
+
+        private void lbFavPlayers_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var player = lbFavPlayers.SelectedItem as Player;
+                ShowPlayer(player);
+                selectedPlayer = player;
+            }
+        }
+
+        private void lbFavPlayers_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Player)))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void lbFavPlayers_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Player)))
+            {
+                var item = e.Data.GetData(typeof(Player)) as Player;
+                lbFavPlayers.Items.Add(item);
+            }
+        }
+
+        private void removeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lbFavPlayers.SelectedItem != null)
+            {
+                lbFavPlayers.Items.Remove(lbFavPlayers.SelectedItem);
+            }
         }
 
         private void Initialize()
@@ -158,7 +211,7 @@ namespace ViktorPetrina
 
         private void InitalizeRepository()
         {
-            if (settingsPreferences.DataSource == UserPreferences.SourceType.API && 
+            if (settingsPreferences.DataSource == UserPreferences.SourceType.API &&
                 settingsPreferences.TeamGender == UserPreferences.Gender.Male)
             {
                 repo = new WebTeamsRepository("men");
@@ -178,8 +231,6 @@ namespace ViktorPetrina
                 repo = new FileTeamsRepository("men");
             }
         }
-
-
 
         private void InitializeDefaultImage()
         {
@@ -263,7 +314,22 @@ namespace ViktorPetrina
                 PreferedLanguage = settingsPreferences.PreferedLanguage,
                 TeamGender = settingsPreferences.TeamGender,
                 FavouriteTeam = cbTeams.SelectedItem as Team,
-                FavouritePlayers = lbPlayers.SelectedItems.Cast<Player>().ToList()
+                FavouritePlayers = GetFavouritePlayers()
             };
+
+        private List<Player> GetFavouritePlayers()
+        {
+            var players = new List<Player>();
+
+            players.AddRange(lbPlayers.SelectedItems.Cast<Player>().ToList());
+            foreach (var player in lbFavPlayers.Items)
+            {
+                players.Add(player as Player);
+            }
+
+            return players;
+        }
+
+        
     }
 }

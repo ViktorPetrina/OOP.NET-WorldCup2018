@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             lblChooseTeam = new Label();
             cbTeams = new ComboBox();
@@ -37,6 +38,8 @@
             btnConfirm = new Button();
             lblFavTeamLbl = new Label();
             lbFavPlayers = new ListBox();
+            cmsFavPlayers = new ContextMenuStrip(components);
+            removeToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
             lblPlayerNameLabel = new Label();
@@ -50,11 +53,12 @@
             lblPlayerIsFavourite = new Label();
             btnChoosePlayerImage = new Button();
             menuStrip = new MenuStrip();
-            settingsToolStripMenuItem = new ToolStripMenuItem();
             fileToolStripMenuItem = new ToolStripMenuItem();
             savePreferencesToolStripMenuItem = new ToolStripMenuItem();
+            settingsToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).BeginInit();
+            cmsFavPlayers.SuspendLayout();
             menuStrip.SuspendLayout();
             SuspendLayout();
             // 
@@ -77,6 +81,7 @@
             lbPlayers.Name = "lbPlayers";
             lbPlayers.SelectionMode = SelectionMode.MultiExtended;
             lbPlayers.SelectedValueChanged += lbPlayers_SelectedValueChanged;
+            lbPlayers.MouseDown += lbPlayers_MouseDown;
             // 
             // pbPlayerImage
             // 
@@ -103,10 +108,27 @@
             // 
             // lbFavPlayers
             // 
+            lbFavPlayers.AllowDrop = true;
+            lbFavPlayers.ContextMenuStrip = cmsFavPlayers;
             lbFavPlayers.FormattingEnabled = true;
             resources.ApplyResources(lbFavPlayers, "lbFavPlayers");
             lbFavPlayers.Name = "lbFavPlayers";
-            lbFavPlayers.SelectedValueChanged += lbFavPlayers_SelectedValueChanged;
+            lbFavPlayers.MouseClick += lbFavPlayers_MouseClick;
+            lbFavPlayers.DragDrop += lbFavPlayers_DragDrop;
+            lbFavPlayers.DragEnter += lbFavPlayers_DragEnter;
+            // 
+            // cmsFavPlayers
+            // 
+            cmsFavPlayers.ImageScalingSize = new Size(20, 20);
+            cmsFavPlayers.Items.AddRange(new ToolStripItem[] { removeToolStripMenuItem });
+            cmsFavPlayers.Name = "cmsFavPlayers";
+            resources.ApplyResources(cmsFavPlayers, "cmsFavPlayers");
+            // 
+            // removeToolStripMenuItem
+            // 
+            removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            resources.ApplyResources(removeToolStripMenuItem, "removeToolStripMenuItem");
+            removeToolStripMenuItem.Click += removeToolStripMenuItem_Click;
             // 
             // label1
             // 
@@ -177,12 +199,6 @@
             resources.ApplyResources(menuStrip, "menuStrip");
             menuStrip.Name = "menuStrip";
             // 
-            // settingsToolStripMenuItem
-            // 
-            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openSettingsToolStripMenuItem });
-            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
-            // 
             // fileToolStripMenuItem
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { savePreferencesToolStripMenuItem });
@@ -193,6 +209,12 @@
             // 
             savePreferencesToolStripMenuItem.Name = "savePreferencesToolStripMenuItem";
             resources.ApplyResources(savePreferencesToolStripMenuItem, "savePreferencesToolStripMenuItem");
+            // 
+            // settingsToolStripMenuItem
+            // 
+            settingsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openSettingsToolStripMenuItem });
+            settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            resources.ApplyResources(settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // openSettingsToolStripMenuItem
             // 
@@ -230,6 +252,7 @@
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).EndInit();
+            cmsFavPlayers.ResumeLayout(false);
             menuStrip.ResumeLayout(false);
             menuStrip.PerformLayout();
             ResumeLayout(false);
@@ -263,5 +286,7 @@
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem savePreferencesToolStripMenuItem;
         private ToolStripMenuItem openSettingsToolStripMenuItem;
+        private ContextMenuStrip cmsFavPlayers;
+        private ToolStripMenuItem removeToolStripMenuItem;
     }
 }
