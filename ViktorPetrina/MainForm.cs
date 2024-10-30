@@ -305,7 +305,7 @@ namespace ViktorPetrina
         }
 
         private bool FormValid()
-            => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0;
+            => cbTeams.SelectedItem is Team && lbPlayers.SelectedItems.Count > 0 || lbFavPlayers.Items.Count != 0;
 
         private UserPreferences GetCombinedPreferences()
             => new UserPreferences
@@ -324,7 +324,11 @@ namespace ViktorPetrina
             players.AddRange(lbPlayers.SelectedItems.Cast<Player>().ToList());
             foreach (var player in lbFavPlayers.Items)
             {
-                players.Add(player as Player);
+                var newPlayer = player as Player;
+                if (!players.ToList().Exists(p => p.Equals(player)) && newPlayer != null)
+                {
+                    players.Add(newPlayer);
+                }
             }
 
             return players;
