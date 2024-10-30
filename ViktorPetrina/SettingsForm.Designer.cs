@@ -155,8 +155,10 @@
             Controls.Add(gbLanguage);
             Controls.Add(gbGender);
             Controls.Add(btnConfirm);
+            KeyPreview = true;
             Name = "SettingsForm";
             Load += SettingsForm_Load;
+            KeyDown += SettingsForm_KeyDown;
             gbGender.ResumeLayout(false);
             gbGender.PerformLayout();
             gbLanguage.ResumeLayout(false);

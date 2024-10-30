@@ -35,7 +35,7 @@ namespace ViktorPetrina
                 preferences.TeamGender = userPreferences.TeamGender;
                 preferences.PreferedLanguage = userPreferences.PreferedLanguage;
 
-                PreferencesUtils.SavePrefrences(preferences); 
+                PreferencesUtils.SavePrefrences(preferences);
             }
             else
             {
@@ -84,6 +84,19 @@ namespace ViktorPetrina
             => rbtnMale.Checked || rbtnFemale.Checked &&
                rbtnCroatian.Checked || rbtnEnglish.Checked &&
                rbtnApi.Checked || rbtnJson.Checked;
-        
+
+        private void SettingsForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    btnConfirm_Click(sender, e);
+                    break;
+
+                case Keys.Escape:
+                    btnCancel_Click(sender, e);
+                    break;
+            }
+        }
     }
 }

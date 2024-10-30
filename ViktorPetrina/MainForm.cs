@@ -18,7 +18,6 @@ using WinFormApp.Model;
 using System.Numerics;
 
 // TODO:
-// popravi bug, kada se igracu postavi slika i zatim spremi, ne spreme se promjene
 
 namespace ViktorPetrina
 {
