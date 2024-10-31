@@ -1,11 +1,5 @@
 ﻿using DataLayer.Model;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
@@ -33,7 +27,7 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public List<Team> GetAllTeams()
+        public async Task<List<Team>> GetAllTeams(IProgress<int> progress)
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -48,6 +42,8 @@ namespace DataLayer.Repository
                 throw new Exception("Provided JSON content is null.");
             }
 
+            progress.Report(100);
+
             return JsonConvert.DeserializeObject<List<Team>>(data);
         }
 
@@ -56,7 +52,7 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public List<Player> GetPlayersByFifaCode(string fifaCode)
+        public async Task<List<Player>> GetPlayersByFifaCode(string fifaCode, IProgress<int> progress)
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
 

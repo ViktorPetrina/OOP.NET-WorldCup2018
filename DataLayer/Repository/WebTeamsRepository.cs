@@ -1,16 +1,6 @@
 ﻿using DataLayer.Model;
 using Newtonsoft.Json;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
@@ -35,7 +25,7 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public List<Player> GetPlayersByFifaCode(string fifaCode)
+        public async Task<List<Player>> GetPlayersByFifaCode(string fifaCode, IProgress<int> progress)
         {
             string data = new WebClient().DownloadString(COUNTRY_MATCHES_ENDPOINT + fifaCode);
             List<Player> players = new List<Player>();
@@ -62,6 +52,8 @@ namespace DataLayer.Repository
                 players.AddRange(match.AwayTeamStatistics.Substitutes);
             }
 
+            progress.Report(100);
+
             return players;
         }
 
@@ -70,7 +62,7 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public List<Team> GetAllTeams()
+        public async Task<List<Team>> GetAllTeams(IProgress<int> progress)
         {
             string data = new WebClient().DownloadString(TEAMS_ENDPOINT);
 
@@ -78,6 +70,8 @@ namespace DataLayer.Repository
             {
                 throw new Exception("Provided JSON content is null.");
             }
+
+            progress.Report(100);
 
             return JsonConvert.DeserializeObject<List<Team>>(data);
         }

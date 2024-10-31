@@ -34,7 +34,7 @@
             cbTeams = new ComboBox();
             lbPlayers = new ListBox();
             pbPlayerImage = new PictureBox();
-            progressBar1 = new ProgressBar();
+            progressBar = new ProgressBar();
             btnConfirm = new Button();
             lblFavTeamLbl = new Label();
             lbFavPlayers = new ListBox();
@@ -89,10 +89,10 @@
             pbPlayerImage.Name = "pbPlayerImage";
             pbPlayerImage.TabStop = false;
             // 
-            // progressBar1
+            // progressBar
             // 
-            resources.ApplyResources(progressBar1, "progressBar1");
-            progressBar1.Name = "progressBar1";
+            resources.ApplyResources(progressBar, "progressBar");
+            progressBar.Name = "progressBar";
             // 
             // btnConfirm
             // 
@@ -242,7 +242,7 @@
             Controls.Add(lbFavPlayers);
             Controls.Add(lblFavTeamLbl);
             Controls.Add(btnConfirm);
-            Controls.Add(progressBar1);
+            Controls.Add(progressBar);
             Controls.Add(pbPlayerImage);
             Controls.Add(lbPlayers);
             Controls.Add(cbTeams);
@@ -265,7 +265,7 @@
         private ComboBox cbTeams;
         private ListBox lbPlayers;
         private PictureBox pbPlayerImage;
-        private ProgressBar progressBar1;
+        private ProgressBar progressBar;
         private Button btnConfirm;
         private Label lblFavTeamLbl;
         private ListBox lbFavPlayers;

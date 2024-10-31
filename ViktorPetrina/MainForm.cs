@@ -1,23 +1,10 @@
-﻿using DataLayer;
-using DataLayer.Model;
+﻿using DataLayer.Model;
 using DataLayer.Repository;
 using WinFormApp.Utilities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using WinFormApp.Model;
-using System.Numerics;
 
-// TODO:
+// TODO: eventualno popraviti darg drop multiple igraca
 
 namespace ViktorPetrina
 {
@@ -26,6 +13,8 @@ namespace ViktorPetrina
         private const string GENERIC_NOT_SELECTED_ERROR = "A team and at least one player must be selected!";
         private const string EXIT_CONFIRMATION_MESSAGE = "Do you want to save selected preferences?";
         private const string DEFAULT_IMAGE_PATH = @"{0}Resources\\Images\\default.png";
+        private const string MAX_FAV_PLAYER_NUMBER_ERROR = "Max favourite player count is 3!";
+        private const string PLAYER_ALREADY_ADDED_ERROR = "Can't add a player that is already favourite.";
 
         private IFootballRepository repo;
         private UserPreferences settingsPreferences;
@@ -40,10 +29,9 @@ namespace ViktorPetrina
             Initialize();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            List<Team> teams = repo.GetAllTeams();
-            cbTeams.Items.AddRange(teams.ToArray());
+            await ShowAllTeams();
 
             if (!PreferencesUtils.PreferencesExist())
             {
@@ -54,6 +42,14 @@ namespace ViktorPetrina
 
             lblFavTeam.Text = preferences.FavouriteTeam?.Country;
             preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
+        }
+
+        private async Task ShowAllTeams()
+        {
+            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
+            List<Team> teams = await repo.GetAllTeams(progress);
+            cbTeams.Items.AddRange(teams.ToArray());
+            
         }
 
         private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
@@ -138,9 +134,15 @@ namespace ViktorPetrina
 
         private void lbPlayers_MouseDown(object sender, MouseEventArgs e)
         {
-            if (lbPlayers.SelectedItem != null)
+            if (lbPlayers.SelectedItems.Count > 0)
             {
-                lbPlayers.DoDragDrop(lbPlayers.SelectedItem, DragDropEffects.Move);
+                List<Player> selectedItems = new List<Player>(); 
+                foreach (var player in lbPlayers.SelectedItems) 
+                { 
+                    selectedItems.Add(player as Player); 
+                }
+
+                lbPlayers.DoDragDrop(lbPlayers.SelectedItems, DragDropEffects.Move);
             }
 
             if (e.Button == MouseButtons.Right)
@@ -171,7 +173,7 @@ namespace ViktorPetrina
 
         private void lbFavPlayers_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof(Player)))
+            if (e.Data.GetDataPresent(typeof(List<Player>)))
             {
                 e.Effect = DragDropEffects.Move;
             }
@@ -183,10 +185,33 @@ namespace ViktorPetrina
 
         private void lbFavPlayers_DragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof(Player)))
+            if (!e.Data.GetDataPresent(typeof(IEnumerable<Player>)) || lbFavPlayers.Items.Count >= 3)
             {
-                var item = e.Data.GetData(typeof(Player)) as Player;
-                lbFavPlayers.Items.Add(item);
+                MessageBox.Show(
+                    MAX_FAV_PLAYER_NUMBER_ERROR, 
+                    "Max player number reached", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+            
+            var players = e.Data.GetData(typeof(List<Player>)) as List<Player>;
+
+            if (!lbFavPlayers.Items.Contains(players))
+            {
+                MessageBox.Show(
+                    PLAYER_ALREADY_ADDED_ERROR,
+                    "Player already added",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            foreach (var player in players)
+            {
+                lbFavPlayers.Items.Add(player);
             }
         }
 
@@ -294,10 +319,13 @@ namespace ViktorPetrina
             InitializeDefaultImage();
         }
 
-        private void ShowTeam(Team team)
+        private async void ShowTeam(Team team)
         {
             string fifaCode = team.FifaCode;
-            IList<Player> playerList = repo.GetPlayersByFifaCode(fifaCode);
+            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
+
+            progressBar.Value = 0;
+            IList<Player> playerList = await repo.GetPlayersByFifaCode(fifaCode, progress);
 
             lbPlayers.Items.Clear();
             lbPlayers.Items.AddRange(playerList.ToArray());

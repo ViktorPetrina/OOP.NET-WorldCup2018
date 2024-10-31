@@ -124,7 +124,7 @@
     <value>Odaberi sliku</value>
   </data>
   <data name="btnConfirm.Text" xml:space="preserve">
-    <value>Potvrdi</value>
+    <value>Spremi preference</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Omiljeni igrači:</value>

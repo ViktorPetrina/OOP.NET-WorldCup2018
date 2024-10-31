@@ -1,9 +1,4 @@
 ﻿using DataLayer.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repository
 {
@@ -11,8 +6,8 @@ namespace DataLayer.Repository
     {
         List<Match> GetAllMatches();
         List<Match> GetMatchesByCountry(string fifaCode);
-        List<Player> GetPlayersByFifaCode(string fifaCode);
-        List<Team> GetAllTeams();
+        Task<List<Player>> GetPlayersByFifaCode(string fifaCode, IProgress<int> progress);
+        Task<List<Team>> GetAllTeams(IProgress<int> progress);
         List<Team> GetAllResults();
         List<GroupResult> GetAllGroupResults();
     }
