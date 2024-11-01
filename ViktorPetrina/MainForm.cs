@@ -2,7 +2,6 @@
 using DataLayer.Repository;
 using WinFormApp.Utilities;
 using System.Data;
-using WinFormApp.Model;
 
 // TODO: eventualno popraviti darg drop multiple igraca
 

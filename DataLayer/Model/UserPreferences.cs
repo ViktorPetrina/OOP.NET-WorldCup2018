@@ -1,14 +1,7 @@
-﻿using DataLayer.Model;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿
+using System.Drawing;
 
-namespace WinFormApp.Model
+namespace DataLayer.Model
 {
     public class UserPreferences
     {
@@ -17,6 +10,7 @@ namespace WinFormApp.Model
         public SourceType DataSource { get; set; }
         public Team? FavouriteTeam { get; set; }
         public IList<Player>? FavouritePlayers { get; set; }
+        public WindowSizeType WindowSize { get; set; }
 
         public enum Gender
         {
@@ -33,8 +27,9 @@ namespace WinFormApp.Model
             Json, API
         }
 
-        
+        public enum WindowSizeType
+        {
+            Small, Medium, Large, Fullscreen
+        }
     }
-
-    
 }
