@@ -12,17 +12,17 @@ namespace DataLayer.Repository
             DATA_PATH = @"{0}Data\worldcup.sfg.io\" + gender;
         }
 
-        public List<GroupResult> GetAllGroupResults()
+        public Task<List<GroupResult>> GetAllGroupResults()
         {
             throw new NotImplementedException();
         }
 
-        public List<Match> GetAllMatches()
+        public Task<List<Match>> GetAllMatches()
         {
             throw new NotImplementedException();
         }
 
-        public List<Team> GetAllResults()
+        public Task<List<Team>> GetAllResults()
         {
             throw new NotImplementedException();
         }
@@ -47,7 +47,7 @@ namespace DataLayer.Repository
             return JsonConvert.DeserializeObject<List<Team>>(data);
         }
 
-        public List<Match> GetMatchesByCountry(string fifaCode)
+        public Task<List<Match>> GetMatchesByCountry(string fifaCode)
         {
             throw new NotImplementedException();
         }

@@ -15,12 +15,12 @@ namespace DataLayer.Repository
             COUNTRY_MATCHES_ENDPOINT = $"https://worldcup-vua.nullbit.hr/" + gender + @"/matches/country?fifa_code=";
         }
 
-        public List<GroupResult> GetAllGroupResults()
+        public Task<List<GroupResult>> GetAllGroupResults()
         {
             throw new NotImplementedException();
         }
 
-        public List<Match> GetAllMatches()
+        public Task<List<Match>> GetAllMatches()
         {
             throw new NotImplementedException();
         }
@@ -57,7 +57,7 @@ namespace DataLayer.Repository
             return players;
         }
 
-        public List<Team> GetAllResults()
+        public Task<List<Team>> GetAllResults()
         {
             throw new NotImplementedException();
         }
@@ -76,9 +76,28 @@ namespace DataLayer.Repository
             return JsonConvert.DeserializeObject<List<Team>>(data);
         }
 
-        public List<Match> GetMatchesByCountry(string fifaCode)
+        public async Task<List<Match>> GetMatchesByCountry(string fifaCode)
         {
-            throw new NotImplementedException();
+            string data = new WebClient().DownloadString(COUNTRY_MATCHES_ENDPOINT + fifaCode);
+
+            var settings = new JsonSerializerSettings();
+            settings.Converters.Add(new TypeOfEventConverter());
+            settings.Converters.Add(new ParseStringConverter());
+            settings.Converters.Add(new PositionConverter());
+
+            List<Match> matches;
+
+            if (data != null)
+            {
+                matches = JsonConvert.DeserializeObject<List<Match>>(data, settings);
+
+                if (matches != null)
+                {
+                    return matches;
+                }
+            }
+
+            return new List<Match>();
         }
     }
 }

@@ -7,6 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Favourite team: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="lblFavTeam" Content="-" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15"/>
+            </Grid>
+            <ComboBox x:Name="cbTeams" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" SelectionChanged="cbTeams_SelectionChanged" />
+            <Label Grid.Column="1" Content="Pick team:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10, 50, 10, 10"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <ComboBox x:Name="cbOpposingTeams" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" SelectionChanged="cbOpposingTeams_SelectionChanged"/>
+                <Label Grid.Column="1" Content="Teams played against:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                <Label Content="Result:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                <Label Content=":" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="lblHomeTeamGoals" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                <Label x:Name="lblAwayTeamGoals" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

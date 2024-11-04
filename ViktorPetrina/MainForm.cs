@@ -48,7 +48,6 @@ namespace ViktorPetrina
             IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
             List<Team> teams = await repo.GetAllTeams(progress);
             cbTeams.Items.AddRange(teams.ToArray());
-            
         }
 
         private void cbTeams_SelectedValueChanged(object sender, EventArgs e)

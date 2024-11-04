@@ -1,5 +1,6 @@
 ﻿using DataLayer.Model;
 using DataLayer.Repository;
+using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WinFormApp.Utilities;
 
 namespace WpfApp
 {
@@ -36,6 +38,16 @@ namespace WpfApp
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             InitalizeRepository();
+            InitializeTeams();
+        }
+
+        private async void InitializeTeams()
+        {
+            var preferences = PreferencesUtils.LoadPreferences();
+            lblFavTeam.Content = preferences.FavouriteTeam?.ToString();
+
+            List<Team> teams = await repo.GetAllTeams(new Progress<int>());
+            teams.ToList().ForEach(team => cbTeams.Items.Add(team));
         }
 
         private void InitializeUserPreferences()
@@ -59,6 +71,64 @@ namespace WpfApp
             {
                 repo = new WebTeamsRepository("women");
             }
+        }
+
+        private async void cbTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Team team = new Team();
+            if (cbTeams.SelectedItem is Team _team)
+            {
+                team = _team;
+            }
+
+            cbOpposingTeams.Items.Clear();
+
+            var matches = await repo.GetMatchesByCountry(team.FifaCode);
+            matches.Select(match =>
+            {
+                if (match.HomeTeam.FifaCode == team.FifaCode)
+                    return match.AwayTeam;
+                else
+                    return match.HomeTeam;
+
+            }).ToList().ForEach(t => cbOpposingTeams.Items.Add(t));
+        }
+
+        private async void cbOpposingTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Team team = new Team();
+            if (cbTeams.SelectedItem is Team _team)
+            {
+                team = _team;
+            }
+
+            TeamMini oppTeam = new TeamMini();
+            if (cbOpposingTeams.SelectedItem is TeamMini t)
+            {
+                oppTeam = t;
+            }
+
+            var matches = await repo.GetMatchesByCountry(team.FifaCode);
+            var match = matches
+                .FirstOrDefault(m =>
+                    m.HomeTeam.FifaCode == team.FifaCode && m.AwayTeam.FifaCode == oppTeam.FifaCode ||
+                    m.HomeTeam.FifaCode == oppTeam.FifaCode && m.AwayTeam.FifaCode == team.FifaCode); 
+
+
+            if (match != null)
+            {
+                lblHomeTeamGoals.Content = match.HomeTeam.FifaCode == team.FifaCode ? 
+                    match.HomeTeam.Goals.ToString() : match.AwayTeam.Goals.ToString();
+
+                lblAwayTeamGoals.Content = match.AwayTeam.FifaCode == oppTeam.FifaCode ?
+                    match.AwayTeam.Goals.ToString() : match.HomeTeam.Goals.ToString();
+            }
+        }
+
+        private void FormClear()
+        {
+            cbOpposingTeams.SelectedItem = null;
+            cbTeams.SelectedItem = null;
         }
     }
 }

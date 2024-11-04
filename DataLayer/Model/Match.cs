@@ -91,6 +91,11 @@ namespace DataLayer.Model
 
         [JsonProperty("penalties")]
         public int Penalties { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Country}({FifaCode})";
+        }
     }
 
     public partial class TeamEvent
