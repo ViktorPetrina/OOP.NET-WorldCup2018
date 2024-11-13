@@ -94,7 +94,7 @@ namespace DataLayer.Model
 
         public override string ToString()
         {
-            return $"{Country}({FifaCode})";
+            return $"{Country} ({FifaCode})";
         }
     }
 

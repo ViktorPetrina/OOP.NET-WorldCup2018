@@ -8,7 +8,7 @@ namespace DataLayer.Repository
         Task<List<Match>> GetMatchesByCountry(string fifaCode);
         Task<List<Player>> GetPlayersByFifaCode(string fifaCode, IProgress<int> progress);
         Task<List<Team>> GetAllTeams(IProgress<int> progress);
-        Task<List<Team>> GetAllResults();
+        Task<List<Result>> GetAllResults();
         Task<List<GroupResult>> GetAllGroupResults();
     }
 }

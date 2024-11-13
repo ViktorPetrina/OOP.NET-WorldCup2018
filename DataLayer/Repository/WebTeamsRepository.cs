@@ -1,5 +1,6 @@
 ﻿using DataLayer.Model;
 using Newtonsoft.Json;
+using System;
 using System.Net;
 
 namespace DataLayer.Repository
@@ -8,11 +9,13 @@ namespace DataLayer.Repository
     {
         private readonly string TEAMS_ENDPOINT;
         private readonly string COUNTRY_MATCHES_ENDPOINT;
+        private readonly string RESULTS_ENDPOINT;
 
         public WebTeamsRepository(string gender)
         {
             TEAMS_ENDPOINT = @"https://worldcup-vua.nullbit.hr/" + gender + @"/teams";
-            COUNTRY_MATCHES_ENDPOINT = $"https://worldcup-vua.nullbit.hr/" + gender + @"/matches/country?fifa_code=";
+            COUNTRY_MATCHES_ENDPOINT = @"https://worldcup-vua.nullbit.hr/" + gender + @"/matches/country?fifa_code=";
+            RESULTS_ENDPOINT = @"https://worldcup-vua.nullbit.hr/" + gender + @"/teams/results";
         }
 
         public Task<List<GroupResult>> GetAllGroupResults()
@@ -57,9 +60,16 @@ namespace DataLayer.Repository
             return players;
         }
 
-        public Task<List<Team>> GetAllResults()
+        public async Task<List<Result>> GetAllResults()
         {
-            throw new NotImplementedException();
+            string data = new WebClient().DownloadString(RESULTS_ENDPOINT);
+
+            if (data is null)
+            {
+                throw new Exception("Provided JSON content is null.");
+            }
+
+            return JsonConvert.DeserializeObject<List<Result>>(data);
         }
 
         public async Task<List<Team>> GetAllTeams(IProgress<int> progress)

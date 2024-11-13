@@ -47,5 +47,10 @@ namespace DataLayer.Model
 
         [JsonProperty("goal_differential")]
         public int GoalDifferential { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Country} ({FifaCode})";
+        }
     }
 }

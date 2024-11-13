@@ -2,6 +2,8 @@
 using DataLayer.Repository;
 using WinFormApp.Utilities;
 using System.Data;
+using System.Diagnostics;
+
 
 // TODO: eventualno popraviti darg drop multiple igraca
 
@@ -28,33 +30,17 @@ namespace ViktorPetrina
             Initialize();
         }
 
-        private async void MainForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            await ShowAllTeams();
-
-            if (!PreferencesUtils.PreferencesExist())
-            {
-                return;
-            }
-
-            var preferences = PreferencesUtils.LoadPreferences();
-
-            lblFavTeam.Text = preferences.FavouriteTeam?.Country;
-            preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
-        }
-
-        private async Task ShowAllTeams()
-        {
-            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
-            List<Team> teams = await repo.GetAllTeams(progress);
-            cbTeams.Items.AddRange(teams.ToArray());
         }
 
         private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
         {
-            ShowTeam(cbTeams.SelectedItem as Team);
-
-            preferencesSaved = false;
+            if (cbTeams.SelectedItem is Team team)
+            {
+                ShowTeam(team);
+                preferencesSaved = false;
+            }
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -102,20 +88,6 @@ namespace ViktorPetrina
             Environment.Exit(0);
         }
 
-        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var player = lbPlayers.SelectedItem as Player;
-            ShowPlayer(player);
-
-            preferencesSaved = false;
-            selectedPlayer = player;
-        }
-
-        private void lbFavPlayers_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnChoosePlayerImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -130,17 +102,21 @@ namespace ViktorPetrina
             }
         }
 
+        private void lbPlayers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (lbPlayers.SelectedItem is Player player)
+            {
+                ShowPlayer(player);
+                preferencesSaved = false;
+                selectedPlayer = player;
+            }
+        }
+
         private void lbPlayers_MouseDown(object sender, MouseEventArgs e)
         {
-            if (lbPlayers.SelectedItems.Count > 0)
+            if (lbPlayers.SelectedItem != null)
             {
-                List<Player> selectedItems = new List<Player>(); 
-                foreach (var player in lbPlayers.SelectedItems) 
-                { 
-                    selectedItems.Add(player as Player); 
-                }
-
-                lbPlayers.DoDragDrop(lbPlayers.SelectedItems, DragDropEffects.Move);
+                lbPlayers.DoDragDrop(lbPlayers.SelectedItem, DragDropEffects.Move);
             }
 
             if (e.Button == MouseButtons.Right)
@@ -171,32 +147,34 @@ namespace ViktorPetrina
 
         private void lbFavPlayers_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof(List<Player>)))
-            {
+            if (e.Data.GetDataPresent(typeof(Player)))
                 e.Effect = DragDropEffects.Move;
-            }
             else
-            {
                 e.Effect = DragDropEffects.None;
-            }
+            
         }
 
         private void lbFavPlayers_DragDrop(object sender, DragEventArgs e)
         {
-            if (!e.Data.GetDataPresent(typeof(IEnumerable<Player>)) || lbFavPlayers.Items.Count >= 3)
+            if (lbFavPlayers.Items.Count >= 3)
             {
                 MessageBox.Show(
-                    MAX_FAV_PLAYER_NUMBER_ERROR, 
-                    "Max player number reached", 
-                    MessageBoxButtons.OK, 
+                    MAX_FAV_PLAYER_NUMBER_ERROR,
+                    "Max favourite players.",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
                 return;
             }
-            
-            var players = e.Data.GetData(typeof(List<Player>)) as List<Player>;
 
-            if (!lbFavPlayers.Items.Contains(players))
+            Player player = new Player();
+
+            if (e.Data.GetData(typeof(Player)) is Player p) 
+                player = p;
+            else
+                return;
+            
+            if (lbFavPlayers.Items.Contains(player))
             {
                 MessageBox.Show(
                     PLAYER_ALREADY_ADDED_ERROR,
@@ -207,10 +185,7 @@ namespace ViktorPetrina
                 return;
             }
 
-            foreach (var player in players)
-            {
-                lbFavPlayers.Items.Add(player);
-            }
+            lbFavPlayers.Items.Add(player);
         }
 
         private void removeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -224,11 +199,34 @@ namespace ViktorPetrina
         private void Initialize()
         {
             InitializeUserPreferences();
-            StartPosition = FormStartPosition.CenterScreen;
             InitalizeRepository();
             InitializeLanguage();
             InitializeComponent();
             InitializeDefaultImage();
+            InitializePreferences();
+            InitializeTeams();
+
+            StartPosition = FormStartPosition.CenterScreen;
+        }
+
+        private async void InitializeTeams()
+        {
+            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
+            List<Team> teams = await repo.GetAllTeams(progress);
+            cbTeams.Items.AddRange(teams.ToArray());
+        }
+
+        private void InitializePreferences()
+        {
+            if (!PreferencesUtils.PreferencesExist())
+            {
+                return;
+            }
+
+            var preferences = PreferencesUtils.LoadPreferences();
+
+            lblFavTeam.Text = preferences.FavouriteTeam?.Country;
+            preferences.FavouritePlayers?.ToList().ForEach(player => lbFavPlayers.Items.Add(player));
         }
 
         private void InitalizeRepository()
@@ -290,6 +288,11 @@ namespace ViktorPetrina
 
         private void ShowPlayer(Player player)
         {
+            if (player == null)
+            {
+                return;
+            }
+
             FormClear();
 
             lblPlayerName.Text = player.Name;
@@ -358,7 +361,5 @@ namespace ViktorPetrina
 
             return players;
         }
-
-        
     }
 }

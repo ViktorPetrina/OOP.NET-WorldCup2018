@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             lblChooseTeam = new Label();
             cbTeams = new ComboBox();
-            lbPlayers = new ListBox();
             pbPlayerImage = new PictureBox();
             progressBar = new ProgressBar();
             btnConfirm = new Button();
@@ -57,6 +56,7 @@
             savePreferencesToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
+            lbPlayers = new ListBox();
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).BeginInit();
             cmsFavPlayers.SuspendLayout();
             menuStrip.SuspendLayout();
@@ -73,15 +73,6 @@
             resources.ApplyResources(cbTeams, "cbTeams");
             cbTeams.Name = "cbTeams";
             cbTeams.SelectedValueChanged += cbTeams_SelectedValueChanged;
-            // 
-            // lbPlayers
-            // 
-            lbPlayers.FormattingEnabled = true;
-            resources.ApplyResources(lbPlayers, "lbPlayers");
-            lbPlayers.Name = "lbPlayers";
-            lbPlayers.SelectionMode = SelectionMode.MultiExtended;
-            lbPlayers.SelectedValueChanged += lbPlayers_SelectedValueChanged;
-            lbPlayers.MouseDown += lbPlayers_MouseDown;
             // 
             // pbPlayerImage
             // 
@@ -222,10 +213,19 @@
             resources.ApplyResources(openSettingsToolStripMenuItem, "openSettingsToolStripMenuItem");
             openSettingsToolStripMenuItem.Click += openSettingsToolStripMenuItem_Click;
             // 
+            // lbPlayers
+            // 
+            lbPlayers.FormattingEnabled = true;
+            resources.ApplyResources(lbPlayers, "lbPlayers");
+            lbPlayers.Name = "lbPlayers";
+            lbPlayers.SelectedValueChanged += lbPlayers_SelectedValueChanged;
+            lbPlayers.MouseDown += lbPlayers_MouseDown;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbPlayers);
             Controls.Add(menuStrip);
             Controls.Add(btnChoosePlayerImage);
             Controls.Add(lblPlayerIsFavourite);
@@ -244,7 +244,6 @@
             Controls.Add(btnConfirm);
             Controls.Add(progressBar);
             Controls.Add(pbPlayerImage);
-            Controls.Add(lbPlayers);
             Controls.Add(cbTeams);
             Controls.Add(lblChooseTeam);
             MainMenuStrip = menuStrip;
@@ -263,7 +262,6 @@
 
         private Label lblChooseTeam;
         private ComboBox cbTeams;
-        private ListBox lbPlayers;
         private PictureBox pbPlayerImage;
         private ProgressBar progressBar;
         private Button btnConfirm;
@@ -288,5 +286,6 @@
         private ToolStripMenuItem openSettingsToolStripMenuItem;
         private ContextMenuStrip cmsFavPlayers;
         private ToolStripMenuItem removeToolStripMenuItem;
+        private ListBox lbPlayers;
     }
 }

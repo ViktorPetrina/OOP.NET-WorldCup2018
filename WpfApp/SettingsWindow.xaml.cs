@@ -38,6 +38,8 @@ namespace WpfApp
             };
 
             InitializeRadioButtonChecks();
+
+            Background = Brushes.Gray;
         }
 
         private void InitializeRadioButtonChecks()

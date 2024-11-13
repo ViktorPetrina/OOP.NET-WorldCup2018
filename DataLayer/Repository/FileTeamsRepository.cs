@@ -22,11 +22,6 @@ namespace DataLayer.Repository
             throw new NotImplementedException();
         }
 
-        public Task<List<Team>> GetAllResults()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<Team>> GetAllTeams(IProgress<int> progress)
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -85,6 +80,11 @@ namespace DataLayer.Repository
             }
 
             return players;
+        }
+
+        public Task<List<Result>> GetAllResults()
+        {
+            throw new NotImplementedException();
         }
     }
 }
