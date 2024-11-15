@@ -61,6 +61,15 @@ namespace WpfApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make favourite.
+        /// </summary>
+        public static string btnPickFavTeam {
+            get {
+                return ResourceManager.GetString("btnPickFavTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show details.
         /// </summary>
         public static string btnShowOppTeamDetails {

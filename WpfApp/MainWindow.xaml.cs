@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using WinFormApp.Utilities;
 
 // TODO:
-// dodati sliku igracima i animacije kod prikaza
+// dodati animacije kod prikaza reprezentacija i timova
 
 namespace WpfApp
 {
@@ -40,7 +40,6 @@ namespace WpfApp
 
         private void Initialize()
         {
-
             InitializeUserPreferences();
             InitializeCulture();
             InitializeComponent();
@@ -249,12 +248,35 @@ namespace WpfApp
         // dodati i ovom prozoru animaciju u trajanju od 0.3 sekunde koja se razlikuje od ove za tim
         private void ShowPlayerDetails(Player player)
         {
+            if (PreferencesUtils.LoadPreferences().FavouritePlayers?.Count > 0)
+            {
+                Player? player_ = PreferencesUtils
+                    .LoadPreferences()?
+                    .FavouritePlayers?
+                    .FirstOrDefault(p => p.Name.Equals(player.Name));
+
+                if (player_ != null)
+                    player.ImagePath = player_.ImagePath;
+            }
+
             new PlayerDetailsWindow(player, 1, 1).ShowDialog();
         }
 
         private void btnShowPlayerDetails_Click(object sender, RoutedEventArgs e)
         {
-            if (cbPlayers.SelectedItem is Player player) ShowPlayerDetails(player);
+            if (cbPlayers.SelectedItem is Player player) 
+                ShowPlayerDetails(player);
+        }
+
+        private void btnPickFavTeam_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbTeams.SelectedItem is Team team)
+            {
+                var prefs = PreferencesUtils.LoadPreferences();
+                prefs.FavouriteTeam = team;
+                lblFavTeam.Content = team.Country;
+                PreferencesUtils.SavePrefrences(prefs);
+            }
         }
     }
 }

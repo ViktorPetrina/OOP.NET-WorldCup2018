@@ -4,7 +4,6 @@ using WinFormApp.Utilities;
 using System.Data;
 using System.Diagnostics;
 
-
 // TODO: eventualno popraviti darg drop multiple igraca
 
 namespace ViktorPetrina
@@ -28,10 +27,6 @@ namespace ViktorPetrina
         public MainForm()
         {
             Initialize();
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
         }
 
         private void cbTeams_SelectedValueChanged(object sender, EventArgs e)
@@ -114,6 +109,8 @@ namespace ViktorPetrina
 
         private void lbPlayers_MouseDown(object sender, MouseEventArgs e)
         {
+            lbPlayers_SelectedValueChanged(sender, e);
+
             if (lbPlayers.SelectedItem != null)
             {
                 lbPlayers.DoDragDrop(lbPlayers.SelectedItem, DragDropEffects.Move);
@@ -137,9 +134,8 @@ namespace ViktorPetrina
 
         private void lbFavPlayers_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left && lbFavPlayers.SelectedItem is Player player)
             {
-                var player = lbFavPlayers.SelectedItem as Player;
                 ShowPlayer(player);
                 selectedPlayer = player;
             }
@@ -213,6 +209,7 @@ namespace ViktorPetrina
         {
             IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
             List<Team> teams = await repo.GetAllTeams(progress);
+            teams.Sort((a, b) => a.FifaCode.CompareTo(b.FifaCode));
             cbTeams.Items.AddRange(teams.ToArray());
         }
 
@@ -301,8 +298,8 @@ namespace ViktorPetrina
 
             if (PreferencesUtils.PreferencesExist() && PreferencesUtils.LoadPreferences().FavouritePlayers != null)
             {
-                lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences()
-                    .FavouritePlayers.Contains(player) ? "Da" : "Ne";
+                lblPlayerIsFavourite.Text = PreferencesUtils.LoadPreferences().FavouritePlayers
+                    .Any(p => p.Name.Equals(player.Name)) ? "Da" : "Ne";
             }
 
             if (player.ImagePath != null)

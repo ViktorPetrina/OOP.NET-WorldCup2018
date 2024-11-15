@@ -249,7 +249,6 @@
             MainMenuStrip = menuStrip;
             Name = "MainForm";
             FormClosing += MainForm_FormClosing;
-            Load += MainForm_Load;
             ((System.ComponentModel.ISupportInitialize)pbPlayerImage).EndInit();
             cmsFavPlayers.ResumeLayout(false);
             menuStrip.ResumeLayout(false);

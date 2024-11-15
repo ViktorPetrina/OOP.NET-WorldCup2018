@@ -20,7 +20,7 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Image x:Name="imgPlayerImage" Grid.Row="0" Width="150" Height="150" Grid.ColumnSpan="2" />
+        <Image x:Name="imgPlayerImage" Grid.Row="0" Width="150" Height="150" Grid.ColumnSpan="2" Source="/default.png" />
         <Label Grid.Column="0" Content="Name: " HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
         <Label Grid.Column="0" Content="Number: " HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"/>
         <Label Grid.Column="0" Content="Position: " HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center"/>

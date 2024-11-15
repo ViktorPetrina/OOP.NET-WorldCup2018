@@ -49,6 +49,18 @@ namespace WpfApp
             lblYellowCards.Content = yellowCards;
             lblPosition.Content = playerPosition;
             lblShirtNumber.Content = playerShirtNumber;
+
+            if (playerImagePath is null) return;
+
+            imgPlayerImage.Source = CreateImage(playerImagePath);
+        }
+
+        private ImageSource CreateImage(string playerImagePath)
+        {
+            BitmapImage image = new BitmapImage(new Uri(playerImagePath, UriKind.Absolute));
+            image.CacheOption = BitmapCacheOption.OnLoad;
+            image.Freeze();
+            return image;
         }
     }
 }
