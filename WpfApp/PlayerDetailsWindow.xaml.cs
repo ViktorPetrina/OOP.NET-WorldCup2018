@@ -30,6 +30,7 @@ namespace WpfApp
 
         public PlayerDetailsWindow(Player player, int goals, int yellowCards)
         {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
             InitializeComponent();
             this.playerImagePath = player.ImagePath;
             this.playerName = player.Name;

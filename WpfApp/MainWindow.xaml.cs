@@ -13,18 +13,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WinFormApp.Utilities;
 
-// TODO: napraviti da rade settingsi -> lokalizacija, spol, velicina ekrana
+// TODO:
+// dodati sliku igracima i animacije kod prikaza
 
 namespace WpfApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly Size SMALL_WINDOW_SIZE = new Size(800, 600);
-        private readonly Size MEDIUM_WINDOW_SIZE = new Size(1280, 720);
-        private readonly Size LARGE_WINDOW_SIZE = new Size(1920, 1080);
+        private readonly Size SMALL_WINDOW_SIZE = new Size(600, 400);
+        private readonly Size MEDIUM_WINDOW_SIZE = new Size(1080, 620);
+        private readonly Size LARGE_WINDOW_SIZE = new Size(1720, 880);
 
         private readonly string TEAM_DETAILS_TEMPLATE = 
             "{0}\nGames played: {1}\nWins: {2}\nLosses: {3}\nDraws: {4}\nGoals for: {5}\nGoals against: {6}\nGoal differencial: {7}";
@@ -42,13 +40,53 @@ namespace WpfApp
 
         private void Initialize()
         {
+
             InitializeUserPreferences();
-            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            InitializeCulture();
             InitializeComponent();
+            InitializeScreenSize();
             InitalizeRepository();
             InitializeTeams();
 
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             Background = Brushes.Gray;
+        }
+
+        private void InitializeCulture()
+        {
+            if (settingsPreferences.PreferedLanguage.Equals(UserPreferences.Language.English))
+            {
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            }    
+            else 
+            {
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hr");
+            }
+        }
+
+        private void InitializeScreenSize()
+        {
+            switch (settingsPreferences.WindowSize)
+            {
+                case UserPreferences.WindowSizeType.Small:
+                    SetWindowSize(SMALL_WINDOW_SIZE);
+                    break;
+                case UserPreferences.WindowSizeType.Medium:
+                    SetWindowSize(MEDIUM_WINDOW_SIZE);
+                    break;
+                case UserPreferences.WindowSizeType.Large: 
+                    SetWindowSize(LARGE_WINDOW_SIZE);
+                    break;
+                case UserPreferences.WindowSizeType.Fullscreen:
+                    WindowState = WindowState.Maximized;
+                    break;
+            }
+        }
+
+        private void SetWindowSize(Size size)
+        {
+            Width = size.Width;
+            Height = size.Height;
         }
 
         private async void InitializeTeams()
@@ -161,7 +199,7 @@ namespace WpfApp
             {
                 oppTeam = t;
             }
-
+            
             var matches = await repo.GetMatchesByCountry(team.FifaCode);
 
             await Task.Run(() =>

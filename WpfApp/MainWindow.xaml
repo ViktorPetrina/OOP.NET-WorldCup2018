@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:rs="clr-namespace:WpfApp.Properties"
+        
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -27,12 +29,12 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content="Favourite team: " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Label x:Name="lblFavTeamLbl" Content="{x:Static rs:Resources.lblFavTeamLbl}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label x:Name="lblFavTeam" Content="-" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="15"/>
             </Grid>
             <ComboBox x:Name="cbTeams" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" SelectionChanged="cbTeams_SelectionChanged" />
-            <Label Grid.Column="1" Content="Pick team:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10, 50, 10, 10"/>
-            <Button x:Name="btnShowTeamDetails" Grid.Column="1" Content="Show details" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
+            <Label x:Name="lblPickTeam" Grid.Column="1" Content="{x:Static rs:Resources.lblPickTeam}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10, 50, 10, 10"/>
+            <Button x:Name="btnShowTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid>
@@ -41,12 +43,12 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <ComboBox x:Name="cbOpposingTeams" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" SelectionChanged="cbOpposingTeams_SelectionChanged"/>
-                <Label Grid.Column="1" Content="Teams played against:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
-                <Label Content="Result:" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                <Label x:Name="lblOpponentTeams" Grid.Column="1" Content="{x:Static rs:Resources.lblOpponentTeams}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+                <Label x:Name="lblResult" Content="{x:Static rs:Resources.lblResult}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
                 <Label Content=":" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label x:Name="lblHomeTeamGoals" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0"/>
                 <Label x:Name="lblAwayTeamGoals" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0"/>
-                <Button x:Name="btnShowOppTeamDetails" Grid.Column="1" Content="Show Details" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
+                <Button x:Name="btnShowOppTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowOppTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
@@ -55,7 +57,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="cbPlayers" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
-            <Button x:Name="btnShowPlayerDetails" Grid.Column="1" Content="Show player details" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnShowPlayerDetails_Click"/>
+            <Button x:Name="btnShowPlayerDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowPlayerDetails}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnShowPlayerDetails_Click"/>
         </Grid>
     </Grid>
 </Window>
