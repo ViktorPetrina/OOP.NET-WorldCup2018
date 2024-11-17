@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Odustani</value>
+  </data>
+  <data name="btnConfirm" xml:space="preserve">
+    <value>Potvrdi</value>
+  </data>
   <data name="btnPickFavTeam" xml:space="preserve">
     <value>Napravi favorit</value>
+  </data>
+  <data name="btnSettings" xml:space="preserve">
+    <value>Postavke</value>
   </data>
   <data name="btnShowOppTeamDetails" xml:space="preserve">
     <value>Prikaži detalje</value>
@@ -140,5 +149,29 @@
   </data>
   <data name="lblResult" xml:space="preserve">
     <value>Rezultat</value>
+  </data>
+  <data name="rbtnBig" xml:space="preserve">
+    <value>Veliki ekran</value>
+  </data>
+  <data name="rbtnCroatian" xml:space="preserve">
+    <value>Hrvatski</value>
+  </data>
+  <data name="rbtnEnglish" xml:space="preserve">
+    <value>Engleski</value>
+  </data>
+  <data name="rbtnFemale" xml:space="preserve">
+    <value>Ženski</value>
+  </data>
+  <data name="rbtnFullscreen" xml:space="preserve">
+    <value>Fullscreen</value>
+  </data>
+  <data name="rbtnMale" xml:space="preserve">
+    <value>Muški</value>
+  </data>
+  <data name="rbtnMid" xml:space="preserve">
+    <value>Ekran srednje veličine</value>
+  </data>
+  <data name="rbtnSmall" xml:space="preserve">
+    <value>Mali ekran</value>
   </data>
 </root>

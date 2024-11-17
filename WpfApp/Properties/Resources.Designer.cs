@@ -61,11 +61,38 @@ namespace WpfApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string btnCancel {
+            get {
+                return ResourceManager.GetString("btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string btnConfirm {
+            get {
+                return ResourceManager.GetString("btnConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make favourite.
         /// </summary>
         public static string btnPickFavTeam {
             get {
                 return ResourceManager.GetString("btnPickFavTeam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string btnSettings {
+            get {
+                return ResourceManager.GetString("btnSettings", resourceCulture);
             }
         }
         
@@ -129,6 +156,78 @@ namespace WpfApp.Properties {
         public static string lblResult {
             get {
                 return ResourceManager.GetString("lblResult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Croatian.
+        /// </summary>
+        public static string rbtnCroatian {
+            get {
+                return ResourceManager.GetString("rbtnCroatian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string rbtnEnglish {
+            get {
+                return ResourceManager.GetString("rbtnEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string rbtnFemale {
+            get {
+                return ResourceManager.GetString("rbtnFemale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fullscreen.
+        /// </summary>
+        public static string rbtnFullscreen {
+            get {
+                return ResourceManager.GetString("rbtnFullscreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Large.
+        /// </summary>
+        public static string rbtnLarge {
+            get {
+                return ResourceManager.GetString("rbtnLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string rbtnMale {
+            get {
+                return ResourceManager.GetString("rbtnMale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meddium.
+        /// </summary>
+        public static string rbtnMid {
+            get {
+                return ResourceManager.GetString("rbtnMid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Small.
+        /// </summary>
+        public static string rbtnSmall {
+            get {
+                return ResourceManager.GetString("rbtnSmall", resourceCulture);
             }
         }
     }

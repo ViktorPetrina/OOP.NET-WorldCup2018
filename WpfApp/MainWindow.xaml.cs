@@ -27,9 +27,6 @@ namespace WpfApp
         private readonly string TEAM_DETAILS_TEMPLATE = 
             "{0}\nGames played: {1}\nWins: {2}\nLosses: {3}\nDraws: {4}\nGoals for: {5}\nGoals against: {6}\nGoal differencial: {7}";
 
-        private readonly string PLAYER_DETAILS_TEMPLATE =
-            "Name: {0}\nShirt number: {1}\nPosition: {2}\nCaptain: {3}Goals: {3}\nYellow cards: {4}";
-
         private IFootballRepository repo;
         private UserPreferences settingsPreferences;
 
@@ -277,6 +274,12 @@ namespace WpfApp
                 lblFavTeam.Content = team.Country;
                 PreferencesUtils.SavePrefrences(prefs);
             }
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SettingsWindow();
+            dialog.ShowDialog();
         }
     }
 }
