@@ -10,8 +10,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="default.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
     <ProjectReference Include="..\ViktorPetrina\WinFormApp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="default.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -124,6 +124,24 @@ namespace WpfApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gender.
+        /// </summary>
+        public static string genderHeader {
+            get {
+                return ResourceManager.GetString("genderHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string languageHeader {
+            get {
+                return ResourceManager.GetString("languageHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Favourite team:.
         /// </summary>
         public static string lblFavTeamLbl {
@@ -228,6 +246,15 @@ namespace WpfApp.Properties {
         public static string rbtnSmall {
             get {
                 return ResourceManager.GetString("rbtnSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen size.
+        /// </summary>
+        public static string screenSizeHeader {
+            get {
+                return ResourceManager.GetString("screenSizeHeader", resourceCulture);
             }
         }
     }

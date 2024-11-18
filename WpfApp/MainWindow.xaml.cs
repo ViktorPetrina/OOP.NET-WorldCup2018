@@ -1,16 +1,8 @@
 ﻿using DataLayer.Model;
 using DataLayer.Repository;
-using System;
-using System.Text;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WinFormApp.Utilities;
 
 // TODO:
@@ -149,7 +141,7 @@ namespace WpfApp
         {
             Result? result;
             if (cbTeams.SelectedItem is Team team && ((Button)e.Source).Name == btnShowTeamDetails.Name)
-            {
+            {   
                 var results = await repo.GetAllResults();
                 if (results is List<Result>)
                 {
@@ -179,11 +171,6 @@ namespace WpfApp
                     }
                 }
             }
-        }
-
-        private void ShowTeamStoryboard_Completed(object sender, EventArgs e)
-        {
-
         }
 
         private async void cbOpposingTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -280,8 +267,32 @@ namespace WpfApp
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new SettingsWindow();
-            dialog.ShowDialog();
+            RestartApplication();
+        }
+
+        public void RestartApplication()
+        {
+            // dohvati trenutni proces
+            var currentProcess = Process.GetCurrentProcess();
+            var currentExePath = currentProcess.MainModule.FileName;
+
+            Process.Start(currentExePath);
+
+            Application.Current.Shutdown();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Do you really want to exit the app?", 
+                "Exit", 
+                MessageBoxButton.OKCancel, 
+                MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Cancel)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

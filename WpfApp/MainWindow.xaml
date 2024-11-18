@@ -7,7 +7,7 @@
         xmlns:rs="clr-namespace:WpfApp.Properties"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -39,14 +39,11 @@
                     <EventTrigger RoutedEvent="Button.Click">
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" To="360" Duration="0:0:0.5" />
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" AutoReverse="True" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
                 </Button.Triggers>
-                <Button.RenderTransform>
-                    <RotateTransform Angle="0" />
-                </Button.RenderTransform>
             </Button>
             <Button x:Name="btnPickFavTeam" Grid.Column="1" Content="{x:Static rs:Resources.btnPickFavTeam}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Click="btnPickFavTeam_Click"/>
         </Grid>
@@ -66,7 +63,7 @@
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="Button.Click">
                             <BeginStoryboard>
-                                <Storyboard Completed="ShowTeamStoryboard_Completed">
+                                <Storyboard>
                                     <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" AutoReverse="True" />
                                 </Storyboard>
                             </BeginStoryboard>

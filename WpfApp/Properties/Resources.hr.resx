@@ -138,6 +138,12 @@
   <data name="btnShowTeamDetails" xml:space="preserve">
     <value>Prikaži detalje</value>
   </data>
+  <data name="genderHeader" xml:space="preserve">
+    <value>Spol</value>
+  </data>
+  <data name="languageHeader" xml:space="preserve">
+    <value>Jezik</value>
+  </data>
   <data name="lblFavTeamLbl" xml:space="preserve">
     <value>Omiljena reprezentacija:</value>
   </data>
@@ -173,5 +179,8 @@
   </data>
   <data name="rbtnSmall" xml:space="preserve">
     <value>Mali ekran</value>
+  </data>
+  <data name="screenSizeHeader" xml:space="preserve">
+    <value>Veličina ekrana</value>
   </data>
 </root>

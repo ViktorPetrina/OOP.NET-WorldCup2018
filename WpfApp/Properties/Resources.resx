@@ -138,6 +138,12 @@
   <data name="btnShowTeamDetails" xml:space="preserve">
     <value>Show details</value>
   </data>
+  <data name="genderHeader" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="languageHeader" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="lblFavTeamLbl" xml:space="preserve">
     <value>Favourite team:</value>
   </data>
@@ -173,5 +179,8 @@
   </data>
   <data name="rbtnSmall" xml:space="preserve">
     <value>Small</value>
+  </data>
+  <data name="screenSizeHeader" xml:space="preserve">
+    <value>Screen size</value>
   </data>
 </root>

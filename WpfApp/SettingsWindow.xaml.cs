@@ -1,17 +1,6 @@
 ﻿using DataLayer.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WinFormApp.Utilities;
 
 namespace WpfApp
@@ -38,8 +27,6 @@ namespace WpfApp
             };
 
             InitializeRadioButtonChecks();
-
-            Background = Brushes.Gray;
         }
 
         private void InitializeRadioButtonChecks()
@@ -64,6 +51,11 @@ namespace WpfApp
         }
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
+        {
+            ConfirmPreferences();
+        }
+
+        private void ConfirmPreferences()
         {
             if (!FormValid())
             {
@@ -121,17 +113,20 @@ namespace WpfApp
                 (rbtnSmallSize.IsChecked.Value || rbtnMidSize.IsChecked.Value || rbtnBigSize.IsChecked.Value || rbtnFullscreen.IsChecked.Value);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        
+
+        private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            var cultureCode = "hr-HR";
-            ResourceDictionary dict = new ResourceDictionary();
-            switch (cultureCode)
+            switch (e.Key)
             {
-                case "en-US": dict.Source = new Uri("..\\Resources\\Strings.en-US.resx", UriKind.Relative); break;
-                case "hr-HR": dict.Source = new Uri("..\\Resources\\Strings.fr-FR.resx", UriKind.Relative); break;
+                case System.Windows.Input.Key.Up:
+                    Application.Current.Shutdown();
+                    break;
+
+                case System.Windows.Input.Key.Enter:
+                    ConfirmPreferences();
+                    break;
             }
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(dict);
         }
     }
 }
