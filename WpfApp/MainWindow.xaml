@@ -34,7 +34,20 @@
             </Grid>
             <ComboBox x:Name="cbTeams" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" SelectionChanged="cbTeams_SelectionChanged" />
             <Label x:Name="lblPickTeam" Grid.Column="1" Content="{x:Static rs:Resources.lblPickTeam}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10, 50, 10, 10"/>
-            <Button x:Name="btnShowTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
+            <Button x:Name="btnShowTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click">
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" To="360" Duration="0:0:0.5" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Button.Triggers>
+                <Button.RenderTransform>
+                    <RotateTransform Angle="0" />
+                </Button.RenderTransform>
+            </Button>
             <Button x:Name="btnPickFavTeam" Grid.Column="1" Content="{x:Static rs:Resources.btnPickFavTeam}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Click="btnPickFavTeam_Click"/>
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1">
@@ -49,7 +62,17 @@
                 <Label Content=":" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label x:Name="lblHomeTeamGoals" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40,0,0,0"/>
                 <Label x:Name="lblAwayTeamGoals" Content="-" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,40,0"/>
-                <Button x:Name="btnShowOppTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowOppTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click"/>
+                <Button x:Name="btnShowOppTeamDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowOppTeamDetails}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="btnShowTeamDetails_Click">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="Button.Click">
+                            <BeginStoryboard>
+                                <Storyboard Completed="ShowTeamStoryboard_Completed">
+                                    <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.5" AutoReverse="True" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                </Button>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
@@ -58,21 +81,22 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="cbPlayers" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,30,0,0"/>
-            <Button x:Name="btnShowPlayerDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowPlayerDetails}" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnShowPlayerDetails_Click">
+            <Button x:Name="btnShowPlayerDetails" Grid.Column="1" Content="{x:Static rs:Resources.btnShowPlayerDetails}" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button.RenderTransform>
                     <ScaleTransform x:Name="buttonScale" ScaleX="1" ScaleY="1" />
                 </Button.RenderTransform>
                 <Button.Triggers>
                     <EventTrigger RoutedEvent="Button.Click">
                         <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetName="buttonScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:0.25" AutoReverse="True" />
-                                <DoubleAnimation Storyboard.TargetName="buttonScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:0.25" AutoReverse="True" />
+                            <Storyboard Completed="btnShowPlayerDetails_Click">
+                                <DoubleAnimation Storyboard.TargetName="buttonScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" From="1" To="1.5" Duration="0:0:0.15" AutoReverse="True" />
+                                <DoubleAnimation Storyboard.TargetName="buttonScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" From="1" To="1.5" Duration="0:0:0.15" AutoReverse="True" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger>
                 </Button.Triggers>
             </Button>
+
         </Grid>
         <Button x:Name="btnSettings" Grid.Column="1" Content="{x:Static rs:Resources.btnSettings}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Height="30" Click="btnSettings_Click"/>
     </Grid>

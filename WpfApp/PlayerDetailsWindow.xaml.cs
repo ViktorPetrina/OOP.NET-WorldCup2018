@@ -31,7 +31,10 @@ namespace WpfApp
         public PlayerDetailsWindow(Player player, int goals, int yellowCards)
         {
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             InitializeComponent();
+
             this.playerImagePath = player.ImagePath;
             this.playerName = player.Name;
             this.playerShirtNumber = player.ShirtNumber;

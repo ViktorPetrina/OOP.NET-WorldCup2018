@@ -45,7 +45,6 @@ namespace WpfApp
             InitializeTeams();
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            Background = Brushes.Gray;
         }
 
         private void InitializeCulture()
@@ -182,6 +181,11 @@ namespace WpfApp
             }
         }
 
+        private void ShowTeamStoryboard_Completed(object sender, EventArgs e)
+        {
+
+        }
+
         private async void cbOpposingTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Team team = new Team();
@@ -219,13 +223,6 @@ namespace WpfApp
             });
         }
 
-        private void FormClear()
-        {
-            cbOpposingTeams.SelectedItem = null;
-            cbTeams.SelectedItem = null;
-        }
-
-        // dodati animaciju u trajanju od 0.5 sekundi uz dizanje prozora
         private void ShowTeamDetails(Result result)
         {
             var message = String.Format(
@@ -242,7 +239,6 @@ namespace WpfApp
             MessageBox.Show(message, $"{result.Country} details", MessageBoxButton.OK);
         }
 
-        // dodati i ovom prozoru animaciju u trajanju od 0.3 sekunde koja se razlikuje od ove za tim
         private void ShowPlayerDetails(Player player)
         {
             if (PreferencesUtils.LoadPreferences().FavouritePlayers?.Count > 0)
@@ -259,9 +255,15 @@ namespace WpfApp
             new PlayerDetailsWindow(player, 1, 1).ShowDialog();
         }
 
-        private void btnShowPlayerDetails_Click(object sender, RoutedEventArgs e)
+        private void btnShowPlayerDetails_Click(object sender, EventArgs e)
         {
-            if (cbPlayers.SelectedItem is Player player) 
+            if (cbPlayers.SelectedItem is Player player)
+                ShowPlayerDetails(player);
+        }
+
+        private void ShowPlayerStoryboard_Completed(object sender, EventArgs e)
+        {
+            if (cbPlayers.SelectedItem is Player player)
                 ShowPlayerDetails(player);
         }
 
