@@ -13,6 +13,7 @@ namespace WpfApp
         private readonly Size MEDIUM_WINDOW_SIZE = new Size(1080, 620);
         private readonly Size LARGE_WINDOW_SIZE = new Size(1720, 880);
 
+        private const string API_ERROR_MESSAGE = "Api was unable to fetch required data, consider switching to json.";
         private readonly string TEAM_DETAILS_TEMPLATE = 
             "Name: {0}\nGames played: {1}\nWins: {2}\nLosses: {3}\nDraws: {4}\nGoals for: {5}\nGoals against: {6}\nGoal differencial: {7}";
 
@@ -78,9 +79,16 @@ namespace WpfApp
             var preferences = PreferencesUtils.LoadPreferences();
             lblFavTeam.Content = preferences.FavouriteTeam?.ToString();
 
-            List<Team> teams = await repo.GetAllTeams(new Progress<int>());
-            teams.Sort((t1, t2) => t1.Country.CompareTo(t2.Country));
-            teams.ForEach(team => cbTeams.Items.Add(team));
+            try
+            {
+                List<Team> teams = await repo.GetAllTeams(new Progress<int>());
+                teams.Sort((t1, t2) => t1.Country.CompareTo(t2.Country));
+                teams.ForEach(team => cbTeams.Items.Add(team));
+            }
+            catch
+            {
+                MessageBox.Show(API_ERROR_MESSAGE, "Api error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void InitializeUserPreferences()

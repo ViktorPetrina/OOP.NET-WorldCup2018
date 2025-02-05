@@ -44,8 +44,15 @@ namespace WpfApp
             lblShirtNumber.Content = playerShirtNumber;
 
             if (playerImagePath == null || playerImagePath == "") return;
-            
-            imgPlayerImage.Source = CreateImage(playerImagePath);
+
+            try
+            {
+                imgPlayerImage.Source = CreateImage(playerImagePath);
+            }
+            catch
+            {
+                return;
+            }
         }
 
         private ImageSource CreateImage(string playerImagePath)

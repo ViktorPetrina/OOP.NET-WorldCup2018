@@ -14,6 +14,8 @@ namespace ViktorPetrina
         private const string DEFAULT_IMAGE_PATH = @"{0}Resources\\Images\\default.png";
         private const string MAX_FAV_PLAYER_NUMBER_ERROR = "Max favourite player count is 3!";
         private const string PLAYER_ALREADY_ADDED_ERROR = "Can't add a player that is already favourite.";
+        private const string PICTURE_ERROR_MESSAGE = "Player picture was changed or deleted";
+        private const string API_ERROR_MESSAGE = "Api was unable to fetch required data, consider switching to json.";
 
         private IFootballRepository repo;
         private UserPreferences settingsPreferences;
@@ -32,8 +34,16 @@ namespace ViktorPetrina
         {
             if (cbTeams.SelectedItem is Team team)
             {
-                ShowTeam(team);
-                preferencesSaved = false;
+                try
+                {
+                    ShowTeam(team);
+                    preferencesSaved = false;
+
+                }
+                catch
+                {
+                    MessageBox.Show(API_ERROR_MESSAGE, "Api error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -318,7 +328,14 @@ namespace ViktorPetrina
 
             if (player.ImagePath != null)
             {
-                pbPlayerImage.Image = Image.FromFile(player.ImagePath);
+                try
+                {
+                    pbPlayerImage.Image = Image.FromFile(player.ImagePath);
+                }
+                catch
+                {
+                    MessageBox.Show(PICTURE_ERROR_MESSAGE, "Picture error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
