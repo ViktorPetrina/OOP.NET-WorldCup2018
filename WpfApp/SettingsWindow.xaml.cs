@@ -15,6 +15,8 @@ namespace WpfApp
 
         public SettingsWindow()
         {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
 

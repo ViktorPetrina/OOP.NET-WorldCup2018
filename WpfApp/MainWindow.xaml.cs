@@ -5,9 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using WinFormApp.Utilities;
 
-// TODO:
-// dodati animacije kod prikaza reprezentacija i timova
-
 namespace WpfApp
 {
     public partial class MainWindow : Window
@@ -17,19 +14,19 @@ namespace WpfApp
         private readonly Size LARGE_WINDOW_SIZE = new Size(1720, 880);
 
         private readonly string TEAM_DETAILS_TEMPLATE = 
-            "{0}\nGames played: {1}\nWins: {2}\nLosses: {3}\nDraws: {4}\nGoals for: {5}\nGoals against: {6}\nGoal differencial: {7}";
+            "Name: {0}\nGames played: {1}\nWins: {2}\nLosses: {3}\nDraws: {4}\nGoals for: {5}\nGoals against: {6}\nGoal differencial: {7}";
 
         private IFootballRepository repo;
         private UserPreferences settingsPreferences;
 
         public MainWindow()
         {
+            InitializeUserPreferences();
             Initialize();
         }
 
         private void Initialize()
         {
-            InitializeUserPreferences();
             InitializeCulture();
             InitializeComponent();
             InitializeScreenSize();
@@ -123,6 +120,8 @@ namespace WpfApp
             cbOpposingTeams.Items.Clear();
             cbPlayers.Items.Clear();
 
+            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
+
             var matches = await repo.GetMatchesByCountry(team.FifaCode);
             matches.Select(match =>
             {
@@ -133,7 +132,7 @@ namespace WpfApp
 
             }).ToList().ForEach(t => cbOpposingTeams.Items.Add(t));
 
-            var players = await repo.GetPlayersByFifaCode(team.FifaCode, new Progress<int>());
+            var players = await repo.GetPlayersByFifaCode(team.FifaCode, progress);
             players.ForEach(player => cbPlayers.Items.Add(player));
         }
 
@@ -175,6 +174,8 @@ namespace WpfApp
 
         private async void cbOpposingTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            progressBar.Value = 0;
+
             Team team = new Team();
             if (cbTeams.SelectedItem is Team _team)
             {
@@ -186,7 +187,8 @@ namespace WpfApp
             {
                 oppTeam = t;
             }
-            
+
+            IProgress<int> progress = new Progress<int>(value => progressBar.Value = value);
             var matches = await repo.GetMatchesByCountry(team.FifaCode);
 
             await Task.Run(() =>
@@ -207,6 +209,8 @@ namespace WpfApp
                             match.AwayTeam.Goals.ToString() : match.HomeTeam.Goals.ToString();
                     });
                 }
+
+                progress.Report(100);
             });
         }
 
@@ -267,18 +271,10 @@ namespace WpfApp
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            RestartApplication();
-        }
+            var settingsWindows = new SettingsWindow();
+            settingsWindows.ShowDialog();
 
-        public void RestartApplication()
-        {
-            // dohvati trenutni proces
-            var currentProcess = Process.GetCurrentProcess();
-            var currentExePath = currentProcess.MainModule.FileName;
-
-            Process.Start(currentExePath);
-
-            Application.Current.Shutdown();
+            Initialize();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

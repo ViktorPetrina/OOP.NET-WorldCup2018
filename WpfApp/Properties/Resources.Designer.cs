@@ -61,7 +61,7 @@ namespace WpfApp.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Exit app.
         /// </summary>
         public static string btnCancel {
             get {

@@ -4,14 +4,13 @@ using WinFormApp.Utilities;
 using System.Data;
 using System.Diagnostics;
 
-// TODO: eventualno popraviti darg drop multiple igraca
-
 namespace ViktorPetrina
 {
     public partial class MainForm : Form
     {
         private const string GENERIC_NOT_SELECTED_ERROR = "A team and at least one player must be selected!";
-        private const string EXIT_CONFIRMATION_MESSAGE = "Do you want to save selected preferences?";
+        private const string EXIT_SAVE_PREFERENCES_MESSAGE = "Do you want to save selected preferences?";
+        private const string EXIT_CONFIRMATION_MESSAGE = "Do you really want to exit?";
         private const string DEFAULT_IMAGE_PATH = @"{0}Resources\\Images\\default.png";
         private const string MAX_FAV_PLAYER_NUMBER_ERROR = "Max favourite player count is 3!";
         private const string PLAYER_ALREADY_ADDED_ERROR = "Can't add a player that is already favourite.";
@@ -64,20 +63,35 @@ namespace ViktorPetrina
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (preferencesSaved || settingsClicked)
+            if (settingsClicked)
             {
                 return;
             }
 
-            DialogResult result = MessageBox.Show(
+            if (!preferencesSaved)
+            {
+                DialogResult savePreferences = MessageBox.Show(
+                        EXIT_SAVE_PREFERENCES_MESSAGE,
+                        "Exit",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                if (FormValid() && savePreferences == DialogResult.Yes)
+                {
+                    PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+                }
+            }
+
+            DialogResult exit = MessageBox.Show(
                         EXIT_CONFIRMATION_MESSAGE,
                         "Exit",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question);
 
-            if (FormValid() && result == DialogResult.Yes)
+            if (exit != DialogResult.Yes)
             {
-                PreferencesUtils.SavePrefrences(GetCombinedPreferences());
+                e.Cancel = true;
+                return;
             }
 
             Environment.Exit(0);

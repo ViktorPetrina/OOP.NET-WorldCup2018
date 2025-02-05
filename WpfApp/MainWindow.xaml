@@ -7,7 +7,7 @@
         xmlns:rs="clr-namespace:WpfApp.Properties"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="Team results" Height="450" Width="800" MinWidth="600" MinHeight="380" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -70,6 +70,7 @@
                         </EventTrigger>
                     </Button.Triggers>
                 </Button>
+                <ProgressBar x:Name="progressBar" HorizontalAlignment="Center" Height="15" Width="150" VerticalAlignment="Bottom" Margin="0,0,0,40"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0">
